@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contact Administration</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Style personnalisé -->
+    <style>
+      :root {
+        --primary-color: #755757;
+        --secondary-color: #481010;
+        --accent-color: #987880;
+        --light-bg: #f8f9fa;
+        --dark-text: #391c23;
+        --success-color: #c08ea0;
+        --warning-color: #a53333;
+      }
+
+      body {
+        background-color: var(--light-bg);
+        font-family: "Poppins", sans-serif;
+        color: var(--dark-text);
+      }
+
+      .navbar {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-brand {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        font-size: 1.2rem;
+      }
+
+      .container {
+        max-width: 800px;
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      h1 {
+        color: var(--secondary-color);
+        font-weight: 600;
+        position: relative;
+        padding-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      h1::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: var(--accent-color);
+        border-radius: 2px;
+      }
+
+      .card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 2rem;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      .card-header {
+        background-color: white;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 1.25rem 1.5rem;
+      }
+
+      .card-header h5 {
+        font-weight: 600;
+        color: var(--secondary-color);
+        margin: 0;
+      }
+
+      .form-control {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 0.25rem rgba(79, 195, 220, 0.25);
+      }
+
+      textarea.form-control {
+        min-height: 150px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .list-group-item {
+        padding: 1.25rem 1.5rem;
+        border-left: none;
+        border-right: none;
+        border-color: rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .list-group-item:hover {
+        background-color: #f8f9fa;
+      }
+
+      .badge {
+        font-weight: 500;
+        padding: 0.5rem 0.8rem;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .bg-success {
+        background-color: var(--success-color) !important;
+      }
+
+      .bg-warning {
+        background-color: var(--warning-color) !important;
+        color: #212529;
+      }
+
+      .alert {
+        border-radius: 8px;
+        padding: 1rem 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border: none;
+        display: flex;
+        align-items: center;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateX(-20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .animate-pulse {
+        animation: pulse 2s infinite;
+      }
+
+      .request-item {
+        animation: slideIn 0.5s ease forwards;
+        opacity: 0;
+      }
+
+      /* Délais d'animation pour chaque élément */
+      .request-item:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .request-item:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+
+      /* Effet de vague au survol */
+      .list-group-item:hover::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--accent-color);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 1.8rem;
+        }
+
+        .card-header,
+        .list-group-item {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+      <div class="container-fluid d-flex align-items-center">
+        <!-- Back Arrow (hidden on dashboard) -->
+        <button
+          id="backArrow"
+          class="btn btn-link text-white me-2"
+          style="font-size: 1.5rem; display: none"
+          aria-label="Retour"
+        >
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-graduation-cap me-2"></i>Portail Étudiant
+        </a>
+      </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container my-5">
+      <h1 class="mb-4 text-center">
+        <i class="fas fa-envelope-open-text me-2"></i>Contact Administration
+      </h1>
+
+      <!-- Formulaire de contact -->
+      <div class="card shadow-sm mb-5">
+        <div class="card-header">
+          <h5><i class="fas fa-paper-plane me-2"></i>Envoyer une demande</h5>
+        </div>
+        <div class="card-body">
+          <form id="contactForm">
+            <div class="mb-4">
+              <label for="subject" class="form-label fw-medium"
+                >Objet de la demande</label
+              >
+              <div class="input-group">
+                <span class="input-group-text bg-light"
+                  ><i class="fas fa-tag text-muted"></i
+                ></span>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="subject"
+                  placeholder="Ex: Problème de relevé de notes"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="message" class="form-label fw-medium"
+                >Votre message</label
+              >
+              <div class="input-group">
+                <span class="input-group-text bg-light align-items-start pt-2"
+                  ><i class="fas fa-comment-dots text-muted"></i
+                ></span>
+                <textarea
+                  class="form-control"
+                  id="message"
+                  rows="5"
+                  placeholder="Décrivez votre demande en détail..."
+                  required
+                ></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary animate-pulse">
+              <i class="fas fa-paper-plane me-2"></i>Envoyer la demande
+            </button>
+          </form>
+          <div
+            id="confirmation"
+            class="alert alert-success mt-4 d-none align-items-center"
+            role="alert"
+          >
+            <i class="fas fa-check-circle fa-2x me-3"></i>
+            <div>
+              <h5 class="mb-1">Message envoyé avec succès !</h5>
+              <p class="mb-0 small">
+                Nous traiterons votre demande dans les plus brefs délais.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Historique des demandes -->
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h5><i class="fas fa-history me-2"></i>Vos demandes envoyées</h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="list-group list-group-flush">
+            <div class="list-group-item request-item">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-file-alt text-primary me-3 fa-lg"></i>
+                  <strong>Problème de relevé de notes</strong>
+                </div>
+                <span class="badge bg-warning">
+                  <i class="fas fa-clock me-1"></i>En attente
+                </span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted"
+                  ><i class="fas fa-calendar-alt me-1"></i>Envoyé le
+                  05/04/2025</small
+                >
+                <a href="#" class="text-primary small"
+                  ><i class="fas fa-eye me-1"></i>Voir détails</a
+                >
+              </div>
+            </div>
+            <div class="list-group-item request-item">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-file-alt text-primary me-3 fa-lg"></i>
+                  <strong>Demande de duplicata d'attestation</strong>
+                </div>
+                <span class="badge bg-success">
+                  <i class="fas fa-check-circle me-1"></i>Traité
+                </span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted"
+                  ><i class="fas fa-calendar-alt me-1"></i>Envoyé le
+                  01/04/2025</small
+                >
+                <a href="#" class="text-primary small"
+                  ><i class="fas fa-eye me-1"></i>Voir détails</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS + FontAwesome -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script personnalisé -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Animation au chargement
+        document.body.style.opacity = "0";
+        setTimeout(function () {
+          document.body.style.transition = "opacity 0.5s ease";
+          document.body.style.opacity = "1";
+        }, 100);
+
+        // Show back arrow if not on dashboard.html
+        const backArrow = document.getElementById("backArrow");
+        if (!window.location.pathname.endsWith("dashboard.html")) {
+          backArrow.style.display = "inline-block";
+          backArrow.addEventListener("click", function () {
+            window.history.back();
+          });
+        }
+
+        // Gestion du formulaire
+        document
+          .getElementById("contactForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const subject = document.getElementById("subject").value;
+            const message = document.getElementById("message").value;
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.innerHTML =
+              '<i class="fas fa-spinner fa-spin me-2"></i>Envoi en cours...';
+            submitBtn.classList.remove("animate-pulse");
+
+            fetch("../add_demande.php", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ subject, message }),
+            })
+              .then((res) => {
+                if (!res.ok) throw new Error("HTTP error " + res.status);
+                return res.json();
+              })
+              .then((data) => {
+                console.log("Response:", data); // Debug log
+                if (data.success) {
+                  addDemandeToList(data.demande);
+                  this.reset();
+                  // Show confirmation as before
+                  const confirmation = document.getElementById("confirmation");
+                  confirmation.classList.remove("d-none");
+                  setTimeout(() => confirmation.classList.add("d-none"), 5000);
+                } else {
+                  alert(data.error || "Erreur lors de l'envoi");
+                }
+                submitBtn.innerHTML =
+                  '<i class="fas fa-paper-plane me-2"></i>Envoyer la demande';
+                submitBtn.classList.add("animate-pulse");
+              })
+              .catch(async (err) => {
+                // Try to get the raw response text
+                const res = await err.response?.text?.();
+                alert(
+                  "Erreur réseau ou serveur ! " + err + (res ? "\\n" + res : "")
+                );
+                submitBtn.innerHTML =
+                  '<i class="fas fa-paper-plane me-2"></i>Envoyer la demande';
+                submitBtn.classList.add("animate-pulse");
+              });
+          });
+
+        function addDemandeToList(demande) {
+          const list = document.querySelector(".list-group");
+          const statusBadge =
+            demande.statut === "traitée"
+              ? '<span class="badge bg-success"><i class="fas fa-check-circle me-1"></i>Traité</span>'
+              : '<span class="badge bg-warning"><i class="fas fa-clock me-1"></i>En attente</span>';
+          const date = new Date(demande.date_demande).toLocaleDateString(
+            "fr-FR"
+          );
+          const html = `
+          <div class="list-group-item request-item">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-file-alt text-primary me-3 fa-lg"></i>
+                <strong>${demande.type_demande}</strong>
+              </div>
+              ${statusBadge}
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-muted"><i class="fas fa-calendar-alt me-1"></i>Envoyé le ${date}</small>
+              <a href="#" class="text-primary small"><i class="fas fa-eye me-1"></i>Voir détails</a>
+            </div>
+          </div>
+        `;
+          list.insertAdjacentHTML("afterbegin", html);
+        }
+
+        // Animation des éléments de demande au survol
+        const requestItems = document.querySelectorAll(".list-group-item");
+        requestItems.forEach((item) => {
+          item.addEventListener("mouseenter", function () {
+            this.style.transform = "translateX(5px)";
+          });
+          item.addEventListener("mouseleave", function () {
+            this.style.transform = "translateX(0)";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

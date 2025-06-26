@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E6SCHOOL</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <title>Administration E6SCHOOL</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", Arial, sans-serif;
+      }
+      :root {
+        --primary: #1c1112a9;
+        --primary-dark: #48282d7f;
+        --secondary: #5007075d;
+        --secondary-dark: #e22727;
+        --light: #f8f9fa;
+        --text-light: #ffffff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        padding: 1.5rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar.scrolled {
+        padding: 1rem 5%;
+        backdrop-filter: blur(10px);
+        background: rgba(109, 10, 18, 0.619);
+      }
+
+      .logo {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--text-light);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.5px;
+      }
+
+      .logo i {
+        margin-right: 0.75rem;
+        color: var(--secondary);
+        font-size: 1.8rem;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+      }
+
+      .nav-links a:hover {
+        color: var(--secondary);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -0.5rem;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--secondary);
+        transition: all 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .nav-cta {
+        background-color: var(--secondary);
+        color: #4d061996;
+        padding: 0.75rem 1.75rem;
+        border-radius: 50px;
+        font-weight: 600;
+        margin-left: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .nav-cta:hover {
+        background-color: var(--secondary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+      }
+
+      .mobile-menu-toggle {
+        display: none;
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .nav-links {
+          position: fixed;
+          top: 5rem;
+          left: 0;
+          width: 100%;
+          background-color: var(--primary-dark);
+          flex-direction: column;
+          gap: 1.5rem;
+          padding: 2rem;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+          transform: translateY(-150%);
+          transition: transform 0.4s ease;
+          z-index: 999;
+        }
+
+        .nav-links.active {
+          transform: translateY(0);
+        }
+
+        .mobile-menu-toggle {
+          display: block;
+        }
+
+        .navbar.scrolled {
+          padding: 1rem 5%;
+        }
+
+        .nav-cta {
+          margin-left: 0;
+          margin-top: 1rem;
+        }
+      }
+      body {
+        background-color: #f5f5f5;
+      }
+
+      .admin-container {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 300px;
+        background-color: #4c4040;
+        color: white;
+        padding: 30px;
+      }
+
+      .profile-section {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .profile-photo {
+        width: 150px;
+        height: 150px;
+        background-color: #e4dbdb;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #4c4040;
+        font-weight: bold;
+      }
+
+      .admin-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu-item {
+        padding: 15px 10px;
+        border-bottom: 1px solid #8b7045;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      /* CORRECTION DES LIENS BLEUS */
+      .menu-item a {
+        color: white !important;
+        text-decoration: none !important;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .menu-item:hover {
+        background-color: #8b7045;
+      }
+
+      .menu-item:hover a {
+        color: #fff !important;
+      }
+
+      /* Style spécifique pour le dernier item (déconnexion) */
+      .menu-item:last-child {
+        margin-top: 20px;
+        background-color: rgba(139, 112, 69, 0.3);
+      }
+
+      .menu-item:last-child:hover {
+        background-color: rgba(139, 112, 69, 0.5);
+      }
+
+      /* Main Content */
+      .main-content {
+        flex: 1;
+        padding: 30px;
+        background-color: #f5f5f5;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .welcome-banner {
+        background-color: #8b7045;
+        color: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+      }
+
+      .user-info {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .info-card {
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .info-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .info-label {
+        font-weight: bold;
+        color: #4c4040;
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+
+      .info-value {
+        color: #333;
+        font-size: 18px;
+      }
+
+      #change-all-btn {
+        background-color: #8b7045;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 30px 0;
+        display: block;
+        width: fit-content;
+        transition: all 0.3s;
+      }
+
+      #change-all-btn:hover {
+        background-color: #6d5936;
+        transform: scale(1.05);
+      }
+
+      /* Ajout pour les icônes si vous en utilisez */
+      .menu-item i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+      }
+
+      /* General Styles */
+      :root {
+        --primary-color: #453a3ae8;
+        --secondary-color: #3e2d2f;
+        --dark-color: #312b2b;
+        --light-color: #60304d;
+        --text-color: #5a5c69;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--text-color);
+        overflow-x: hidden;
+      }
+
+      /* Footer Section */
+      .footer-section {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: white;
+        position: relative;
+        margin-top: 80px;
+      }
+
+      .footer-wave {
+        position: absolute;
+        top: -100px;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        transform: rotate(180deg);
+      }
+
+      .footer-wave svg {
+        position: relative;
+        display: block;
+        width: calc(100% + 1.3px);
+        height: 100px;
+      }
+
+      .footer-wave .shape-fill {
+        fill: #ffffff;
+      }
+
+      .footer-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Footer Widgets */
+      .footer-widget {
+        margin-bottom: 30px;
+      }
+
+      .widget-title {
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .widget-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background: var(--secondary-color);
+      }
+
+      .logo-img {
+        max-width: 180px;
+        height: auto;
+      }
+
+      .footer-text {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      /* Footer Links */
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+        position: relative;
+      }
+
+      .footer-links a:hover {
+        color: white;
+        transform: translateX(5px);
+      }
+
+      .footer-links a::before {
+        content: "\f054";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 10px;
+        position: absolute;
+        left: -15px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .footer-links a:hover::before {
+        opacity: 1;
+        left: -10px;
+      }
+
+      /* Contact Info */
+      .footer-contact {
+        list-style: none;
+        padding: 0;
+      }
+
+      .contact-item {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .contact-item i {
+        margin-right: 10px;
+        color: var(--secondary-color);
+        font-size: 16px;
+        margin-top: 3px;
+      }
+
+      .contact-item span {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+      }
+
+      /* Social Icons */
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(142, 18, 18, 0.1);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .social-icon:hover {
+        background: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+
+      /* Newsletter */
+      .newsletter h4 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        color: white;
+      }
+
+      .newsletter-form {
+        display: flex;
+        position: relative;
+      }
+
+      .newsletter-form input {
+        width: 100%;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 30px;
+        background: rgba(172, 36, 36, 0.2);
+        color: rgb(141, 21, 21);
+        outline: none;
+      }
+
+      .newsletter-form input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .newsletter-form button {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--secondary-color);
+        color: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .newsletter-form button:hover {
+        background: #17a673;
+      }
+
+      /* Footer Bottom */
+      .footer-bottom {
+        border-top: 1px solid rgba(178, 32, 32, 0.1);
+      }
+
+      .copyright-text {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+      }
+
+      .footer-menu {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+      }
+
+      .footer-menu a {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .footer-menu a:hover {
+        color: var(--secondary-color);
+      }
+
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 99;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(215, 54, 54, 0.663);
+      }
+
+      .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 991px) {
+        .footer-wave {
+          top: -70px;
+        }
+
+        .footer-wave svg {
+          height: 70px;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .footer-wave {
+          top: -50px;
+        }
+
+        .footer-wave svg {
+          height: 50px;
+        }
+
+        .footer-menu {
+          justify-content: center;
+          margin-top: 10px;
+        }
+
+        .copyright-text,
+        .footer-menu a {
+          font-size: 13px;
+        }
+
+        .back-to-top {
+          width: 40px;
+          height: 40px;
+          font-size: 16px;
+          bottom: 20px;
+          right: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="#" class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        E6SCHOOL
+      </a>
+
+      <div class="nav-links">
+        <a href="page d'acceuil.html" class="acceuil-button">
+          <i class="#"></i> Home</a
+        >
+        <a href="#programs">Programmes</a>
+        <a href="#about">About</a>
+        <a href="#Guide">Guide</a>
+        <a href="#contact">Contact</a>
+        <a href="login.html" class="login-button">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </a>
+      </div>
+      <div class="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </nav>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="admin-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="profile-section">
+          <div class="profile-photo">
+            <img
+              id="profilePhoto"
+              src="https://via.placeholder.com/150/E0E0E0/808080?text=Profil"
+              alt="Profile Photo"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+              "
+            />
+          </div>
+          <div class="profile-info mb-3">
+            <h4 class="text-white" id="studentName">Nom Prénom</h4>
+          </div>
+        </div>
+
+        <ul class="admin-menu">
+          <li class="menu-item active">
+            <a href="dashboard.html"
+              ><i class="fas fa-tachometer-alt me-2"></i>Tableau de Bord</a
+            >
+          </li>
+          <li class="menu-item">
+            <a href="notes.html"
+              ><i class="fas fa-graduation-cap"></i> Mes notes</a
+            >
+          </li>
+          <li class="menu-item">
+            <a href="inscription.html"
+              ><i class="fas fa-edit"></i> Réinscription</a
+            >
+          </li>
+          <li class="menu-item">
+            <a href="demande.html"
+              ><i class="fas fa-envelope"></i> Mes demandes</a
+            >
+          </li>
+          <li class="menu-item">
+            <a href="documents.html"
+              ><i class="fas fa-file-alt"></i> Documents</a
+            >
+          </li>
+          <li class="menu-item">
+            <a href="historique.html"
+              ><i class="fas fa-history"></i> Historique</a
+            >
+          </li>
+          <li class="menu-item">
+            <a href="emploi.html"
+              ><i class="fas fa-arrow-up"></i> Emploi du temps</a
+            >
+          </li>
+
+          <li class="menu-item">
+            <a href="avis.html"><i class="fas fa-comments"></i> avis</a>
+          </li>
+          <li class="menu-item">
+            <a href="#"><i class="fas fa-key"></i> Changer mon de passe</a>
+          </li>
+          <li class="menu-item">
+            <a href="login.html"
+              ><i class="fas fa-sign-out-alt"></i> Se déconnecter</a
+            >
+          </li>
+        </ul>
+        <button
+          id="change-all-btn"
+          onclick="window.location.href='profile.html'"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            style="vertical-align: middle; margin-right: 8px"
+          >
+            <path
+              d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"
+            ></path>
+          </svg>
+          Modifier toutes les informations
+        </button>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="header">
+          <h1>Electronic Administration</h1>
+        </div>
+
+        <div class="welcome-banner">
+          <h2>Bonjour NOM ET PRENOM</h2>
+          <p>Bienvenue sur votre espace privé</p>
+        </div>
+
+        <div class="user-info">
+          <div class="info-card">
+            <div class="info-label">Nom d'utilisateur</div>
+            <div class="info-value" id="usernameValue">username</div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-label">Nom</div>
+            <div class="info-value" id="nomValue">nom</div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-label">Prénom</div>
+            <div class="info-value" id="prenomValue">prenom</div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-label">Sexe</div>
+            <div class="info-value" id="sexeValue">sexe</div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-label">Nationalité</div>
+            <div class="info-value" id="nationaliteValue">nationnalité</div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-label">Date de naissance</div>
+            <div class="info-value" id="dateNaissanceValue">
+              date de naissance
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-label">Lieu de naissance</div>
+            <div class="info-value" id="lieuNaissanceValue">
+              lieu de naissance
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-label">Email</div>
+            <div class="info-value" id="emailValue">email@example.com</div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-label">Code Apogée</div>
+            <div class="info-value" id="codeApogeeValue">code apogée</div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-label">Adresse</div>
+            <div class="info-value" id="adresseValue">adresse actuelle</div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-label">Téléphone</div>
+            <div class="info-value" id="telephoneValue">06 12 34 56 78</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer-section">
+      <div class="footer-wave">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path
+            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+            opacity=".25"
+            class="shape-fill"
+          ></path>
+          <path
+            d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+            opacity=".5"
+            class="shape-fill"
+          ></path>
+          <path
+            d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+            class="shape-fill"
+          ></path>
+        </svg>
+      </div>
+
+      <div class="container">
+        <div class="footer-content pt-5 pb-4">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+              <div class="footer-widget">
+                <div class="logo-wrapper mb-3"></div>
+                <p class="footer-text">
+                  E6SCHOOL <br />est une plateforme éducative innovante offrant
+                  des cours de qualité pour les élèves de tous niveaux.
+                </p>
+                <div class="social-links mt-4">
+                  <a href="#" class="social-icon"
+                    ><i class="fab fa-facebook-f"></i
+                  ></a>
+                  <a href="#" class="social-icon"
+                    ><i class="fab fa-twitter"></i
+                  ></a>
+                  <a href="#" class="social-icon"
+                    ><i class="fab fa-instagram"></i
+                  ></a>
+                  <a href="#" class="social-icon"
+                    ><i class="fab fa-linkedin-in"></i
+                  ></a>
+                  <a href="#" class="social-icon"
+                    ><i class="fab fa-youtube"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+              <div class="footer-widget">
+                <h3 class="widget-title">Liens rapides</h3>
+                <ul class="footer-links">
+                  <li><a href="page d'acceuil.html">Home</a></li>
+                  <li><a href="page d'acceuil.html">Courses</a></li>
+                  <li><a href="page d'acceuil.html">About us</a></li>
+                  <li><a href="#">New</a></li>
+                  <li><a href="#">Events</a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <div class="footer-widget">
+                <h3 class="widget-title">Our courses</h3>
+                <ul class="footer-links">
+                  <li><a href="#">Managment</a></li>
+                  <li><a href="#">Gestion</a></li>
+                  <li><a href="#">Comptabilité</a></li>
+                  <li><a href="#">analyse</a></li>
+                  <li><a href="#">English</a></li>
+                  <li><a href="#">Math</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+              <div class="footer-widget">
+                <h3 class="widget-title"><Contact-us></Contact-us></h3>
+                <ul class="footer-contact">
+                  <li class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>123 Rue Mohamed , Meknes 75000</span>
+                  </li>
+                  <li class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+212 1 23 45 67 89</span>
+                  </li>
+                  <li class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contact@e6school.com</span>
+                  </li>
+                </ul>
+                <div class="newsletter mt-3">
+                  <h4>Newsletter</h4>
+                  <form class="newsletter-form">
+                    <input type="email" placeholder="your email" required />
+                    <button type="submit">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom py-3">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+              <p class="copyright-text mb-0">
+                &copy; <span id="year"></span> E6SCHOOL. Tous droits réservés.
+              </p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              <div class="footer-menu">
+                <a href="#">Politique de confidentialité</a>
+                <a href="#">Conditions d'utilisation</a>
+                <a href="#">FAQ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+      </div>
+    </footer>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Navbar Scroll Effect
+    window.addEventListener("scroll", function () {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    mobileMenuToggle.addEventListener("click", function () {
+      navLinks.classList.toggle("active");
+      this.innerHTML = navLinks.classList.contains("active")
+        ? '<i class="fas fa-times"></i>'
+        : '<i class="fas fa-bars"></i>';
+    });
+
+    // Close menu when clicking on a link (mobile)
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 768) {
+          navLinks.classList.remove("active");
+          mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+      });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute("href");
+        if (targetId === "#") return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      // Set current year in copyright
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Back to top button
+      const backToTopButton = document.querySelector(".back-to-top");
+
+      window.addEventListener("scroll", function () {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add("active");
+        } else {
+          backToTopButton.classList.remove("active");
+        }
+      });
+
+      // Animate footer links on hover
+      const footerLinks = document.querySelectorAll(".footer-links a");
+
+      footerLinks.forEach((link) => {
+        link.addEventListener("mouseenter", function () {
+          this.style.transform = "translateX(5px)";
+        });
+
+        link.addEventListener("mouseleave", function () {
+          this.style.transform = "translateX(0)";
+        });
+      });
+
+      // Newsletter form submission
+      const newsletterForm = document.querySelector(".newsletter-form");
+
+      if (newsletterForm) {
+        newsletterForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const emailInput = this.querySelector('input[type="email"]');
+
+          if (emailInput.value.trim() !== "") {
+            // Here you would typically send the email to your server
+            alert("Merci pour votre inscription à notre newsletter!");
+            emailInput.value = "";
+          } else {
+            alert("Veuillez entrer une adresse email valide.");
+          }
+        });
+      }
+
+      // Add animation to social icons
+      const socialIcons = document.querySelectorAll(".social-icon");
+
+      socialIcons.forEach((icon) => {
+        icon.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-3px)";
+        });
+
+        icon.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0)";
+        });
+      });
+
+      // Add scroll animation to footer elements
+      const footerWidgets = document.querySelectorAll(".footer-widget");
+
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      footerWidgets.forEach((widget, index) => {
+        widget.style.opacity = "0";
+        widget.style.transform = "translateY(20px)";
+        widget.style.transition = `opacity 0.5s ease ${
+          index * 0.1
+        }s, transform 0.5s ease ${index * 0.1}s`;
+        observer.observe(widget);
+      });
+
+      // Fetch student profile data
+      fetch("../get_student_profile.php")
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success && data.student) {
+            const student = data.student;
+
+            document.getElementById("profilePhoto").src =
+              student.profile_picture_path ||
+              "https://via.placeholder.com/150/E0E0E0/808080?text=Profil";
+
+            document.getElementById("studentName").textContent =
+              student.prenom + " " + student.nom;
+            document.querySelector(
+              ".welcome-banner h2"
+            ).textContent = `Bonjour ${student.prenom} ${student.nom}`;
+
+            // Helper function to update info card
+            function updateInfoCard(id, value) {
+              const element = document.getElementById(id);
+              const parentCard = element ? element.closest(".info-card") : null;
+              if (value && value.trim() !== "" && value !== "N/A") {
+                if (element) {
+                  element.textContent = value;
+                }
+                if (parentCard) {
+                  parentCard.style.display = ""; // Show the card
+                }
+              } else {
+                if (parentCard) {
+                  parentCard.style.display = "none"; // Hide the card
+                }
+              }
+            }
+
+            updateInfoCard("emailValue", student.email);
+            updateInfoCard("usernameValue", student.username || "N/A"); // Assuming username exists if you want to display it
+            updateInfoCard("nomValue", student.nom);
+            updateInfoCard("prenomValue", student.prenom);
+            updateInfoCard("sexeValue", student.sexe);
+            updateInfoCard("nationaliteValue", student.nationalite || "N/A");
+            updateInfoCard(
+              "dateNaissanceValue",
+              student.date_naissance || "N/A"
+            );
+            updateInfoCard("lieuNaissanceValue", student.lieu_naissance);
+            updateInfoCard("codeApogeeValue", student.code_apogee);
+            updateInfoCard("adresseValue", student.adresse);
+            updateInfoCard("telephoneValue", student.telephone);
+          } else {
+            console.error("Failed to load student profile:", data.message);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching student profile:", error);
+        });
+    });
+  </script>
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mes Notes</title>
+    <style>
+      :root {
+        --primary: #67464d;
+        --secondary: #3b161e;
+        --danger: #6d3b35;
+        --light: #ecf0f1;
+        --dark: #381922;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f7fa;
+        color: #333;
+        line-height: 1.6;
+        animation: fadeInBody 1s ease-in;
+      }
+
+      @keyframes fadeInBody {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      header {
+        background-color: var(--dark);
+        color: white;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        animation: slideDown 0.8s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      nav {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      nav a:hover,
+      nav a.active {
+        background-color: var(--primary);
+        transform: scale(1.05);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      .stats-container {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        animation: fadeIn 1.2s ease-in;
+      }
+
+      .stat-card {
+        background: rgb(248, 243, 243);
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        flex: 1;
+        min-width: 200px;
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .stat-card h3 {
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .big-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--primary);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: rgb(125, 119, 119);
+        box-shadow: 0 2px 10px rgba(146, 134, 134, 0.721);
+        border-radius: 8px;
+        overflow: hidden;
+        animation: fadeInTable 1.4s ease-in;
+      }
+
+      @keyframes fadeInTable {
+        from {
+          opacity: 0;
+          transform: scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      th,
+      td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+
+      th {
+        background-color: var(--dark);
+        color: white;
+        font-weight: 500;
+      }
+
+      tr:hover {
+        background-color: #f9f9f9;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .text-success {
+        color: var(--secondary);
+      }
+
+      .text-danger {
+        color: var(--danger);
+      }
+
+      .chart-container {
+        margin-top: 2rem;
+        background: rgb(255, 251, 251);
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        animation: fadeIn 1.6s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      footer {
+        text-align: center;
+        padding: 1.5rem;
+        background-color: var(--dark);
+        color: white;
+        margin-top: 2rem;
+        animation: fadeInFooter 2s ease-in;
+      }
+
+      @keyframes fadeInFooter {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+        <div class="container-fluid d-flex align-items-center">
+          <!-- Back Arrow (hidden on dashboard) -->
+          <button
+            id="backArrow"
+            class="btn btn-link text-white me-2"
+            style="font-size: 1.5rem; display: none"
+            aria-label="Retour"
+          >
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <a class="navbar-brand" href="#">
+            <i class="fas fa-graduation-cap me-2"></i>Portail Étudiant
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>Mes Notes</h1>
+
+      <div class="stats-container">
+        <div class="stat-card">
+          <h3>Moyenne Générale</h3>
+          <p class="big-number" id="moyenne-generale">-</p>
+        </div>
+        <div class="stat-card">
+          <h3>Meilleure Note</h3>
+          <p class="big-number text-success" id="meilleure-note">-</p>
+        </div>
+        <div class="stat-card">
+          <h3>Plus faible note</h3>
+          <p class="big-number text-danger" id="faible-note">-</p>
+        </div>
+        <div class="stat-card">
+          <h3>Modules validés</h3>
+          <p class="big-number" id="modules-valides">-</p>
+        </div>
+      </div>
+
+      <div class="filter-controls" style="margin-bottom: 1.5rem">
+        <label
+          for="semesterFilter"
+          style="font-weight: bold; margin-right: 0.5rem"
+          >Filtrer par semestre:</label
+        >
+        <select
+          id="semesterFilter"
+          class="form-select"
+          style="display: inline-block; width: auto; padding: 0.5rem"
+        >
+          <option value="">Tous les semestres</option>
+          <!-- Semesters will be dynamically loaded here by JavaScript -->
+        </select>
+      </div>
+
+      <div class="table-container">
+        <table id="notesTable">
+          <thead>
+            <tr>
+              <th>Module</th>
+              <th>Note</th>
+              <th>Date</th>
+              <th>Moyenne Module</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rempli par JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="chart-container">
+        <canvas id="notesChart"></canvas>
+      </div>
+    </div>
+
+    <footer>
+      <p>Système de Gestion Scolaire &copy; 2023</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      let allModulesData = []; // To store all fetched module data
+      let myChart; // To store the Chart.js instance
+
+      // Fetch notes function
+      async function fetchNotes(semester = null) {
+        let url = "../get_grades.php";
+        if (semester) {
+          url += `?semestre=${encodeURIComponent(semester)}`;
+        }
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+
+          if (data.success) {
+            allModulesData = data.grades; // This now holds modules with nested notes_details
+            populateStats(data.stats);
+            populateSemesterFilter(data.available_semesters, semester);
+            updateTableAndChart(allModulesData, semester); // Pass semester to filter table if needed
+          } else {
+            console.error("Error fetching grades:", data.message);
+            alert("Erreur lors du chargement des notes: " + data.message);
+            populateStats({
+              moyenne_generale: "-",
+              meilleure_note: "-",
+              plus_faible_note: "-",
+              modules_valides: "-",
+            }); // Clear stats on error
+            populateSemesterFilter([], semester); // Clear semesters
+            updateTableAndChart([], semester); // Clear UI on error
+          }
+        } catch (error) {
+          console.error("Network error fetching grades:", error);
+          alert("Erreur réseau lors du chargement des notes.");
+          populateStats({
+            moyenne_generale: "-",
+            meilleure_note: "-",
+            plus_faible_note: "-",
+            modules_valides: "-",
+          }); // Clear stats on error
+          populateSemesterFilter([], semester); // Clear semesters
+          updateTableAndChart([], semester); // Clear UI on error
+        }
+      }
+
+      // Populate statistical cards
+      function populateStats(stats) {
+        document.getElementById("moyenne-generale").textContent =
+          stats.moyenne_generale !== "-"
+            ? stats.moyenne_generale.toFixed(2)
+            : "-";
+        document.getElementById("meilleure-note").textContent =
+          stats.meilleure_note !== "-" ? stats.meilleure_note.toFixed(2) : "-";
+        document.getElementById("faible-note").textContent =
+          stats.plus_faible_note !== "-"
+            ? stats.plus_faible_note.toFixed(2)
+            : "-";
+        document.getElementById("modules-valides").textContent =
+          stats.modules_valides;
+      }
+
+      // Populate semester filter dropdown
+      function populateSemesterFilter(
+        availableSemesters,
+        selectedSemester = null
+      ) {
+        const semesterFilter = document.getElementById("semesterFilter");
+        semesterFilter.innerHTML =
+          '<option value="">Tous les semestres</option>'; // Reset options
+
+        availableSemesters.sort();
+        availableSemesters.forEach((sem) => {
+          const option = document.createElement("option");
+          option.value = sem;
+          option.textContent = sem;
+          semesterFilter.appendChild(option);
+        });
+
+        // Set the selected value after options are populated
+        if (selectedSemester) {
+          semesterFilter.value = selectedSemester;
+        }
+      }
+
+      // Update UI elements for table and chart
+      function updateTableAndChart(modulesToDisplay, currentSemesterFilter) {
+        afficherNotes(modulesToDisplay, currentSemesterFilter);
+        creerGraphique(modulesToDisplay);
+      }
+
+      // Afficher les notes dans le tableau
+      function afficherNotes(modulesData, currentSemesterFilter) {
+        const tbody = document.querySelector("#notesTable tbody");
+        tbody.innerHTML = "";
+
+        let hasNotesToDisplay = false;
+        modulesData.forEach((module) => {
+          module.notes_details.forEach((noteDetail) => {
+            // Filter individual notes by semester if a filter is applied
+            if (
+              !currentSemesterFilter ||
+              currentSemesterFilter === "Tous les semestres" ||
+              noteDetail.semestre === currentSemesterFilter
+            ) {
+              hasNotesToDisplay = true;
+              const tr = document.createElement("tr");
+              tr.innerHTML = `
+                        <td>${module.code_module} - ${module.nom_module}</td>
+                        <td>${noteDetail.note.toFixed(2)}</td>
+                        <td>${new Date(
+                          noteDetail.date_examen
+                        ).toLocaleDateString("fr-FR")}</td>
+                        <td>${module.moyenne_module.toFixed(2)}</td>
+                        <td class="${
+                          module.moyenne_module >= 10
+                            ? "text-success"
+                            : "text-danger"
+                        }">${module.statut}</td>
+                    `;
+              tbody.appendChild(tr);
+            }
+          });
+        });
+
+        if (!hasNotesToDisplay) {
+          const tr = document.createElement("tr");
+          tr.innerHTML =
+            '<td colspan="5" class="text-center">Aucune note à afficher pour ce semestre.</td>';
+          tbody.appendChild(tr);
+        }
+      }
+
+      function creerGraphique(modulesData) {
+        const ctx = document.getElementById("notesChart").getContext("2d");
+
+        if (myChart) {
+          myChart.destroy();
+        }
+
+        if (modulesData.length === 0) {
+          ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+          return;
+        }
+
+        const labels = modulesData.map(
+          (module) => `${module.code_module} (${module.nom_module})`
+        );
+        const averages = modulesData.map((module) => module.moyenne_module);
+
+        myChart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Moyenne par module",
+                data: averages,
+                backgroundColor: "rgba(54, 162, 235, 0.7)",
+                borderColor: "rgba(54, 162, 235, 1)",
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 20,
+                title: {
+                  display: true,
+                  text: "Note / 20",
+                },
+              },
+            },
+            plugins: {
+              legend: {
+                position: "top",
+              },
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    return `Moyenne: ${context.raw.toFixed(2)}/20`;
+                  },
+                },
+              },
+            },
+          },
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        fetchNotes();
+        // Attach event listener for semester filter only once
+        document
+          .getElementById("semesterFilter")
+          .addEventListener("change", (event) => {
+            fetchNotes(event.target.value);
+          });
+
+        document.getElementById("logout").addEventListener("click", () => {
+          if (confirm("Voulez-vous vraiment vous déconnecter ?")) {
+            window.location.href = "login.php";
+          }
+        });
+
+        const backArrow = document.getElementById("backArrow");
+        if (!window.location.pathname.endsWith("dashboard.html")) {
+          backArrow.style.display = "inline-block";
+          backArrow.addEventListener("click", function () {
+            window.history.back();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

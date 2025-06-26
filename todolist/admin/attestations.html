@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Attestations - Web School Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">WS</div>
+                <h2>Web School</h2>
+            </div>
+
+            <nav class="sidebar-menu">
+                <p class="menu-title">Principal</p>
+                <div class="menu-item">
+                    <a href="dashboard.html"><i class="fas fa-home"></i> Tableau de bord</a>
+                </div>
+
+                <p class="menu-title">Gestion</p>
+                <div class="menu-item">
+                    <a href="comptes.html"><i class="fas fa-users-cog"></i> Comptes</a>
+                </div>
+                <div class="menu-item">
+                    <a href="etudiants.html"><i class="fas fa-user-graduate"></i> Étudiants</a>
+                </div>
+                <div class="menu-item active">
+                    <a href="attestations.html"><i class="fas fa-file-certificate"></i> Attestations</a>
+                </div>
+                <div class="menu-item">
+                    <a href="programmes.html"><i class="fas fa-book"></i> Programmes</a>
+                </div>
+                <div class="menu-item">
+                    <a href="planning.html"><i class="fas fa-calendar-alt"></i> Planning</a>
+                </div>
+                 <div class="menu-item">
+                    <a href="documents.html"><i class="fas fa-file-check"></i> Documents</a>
+                </div>
+
+                <p class="menu-title">Communication</p>
+                <div class="menu-item">
+                    <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                </div>
+                <div class="menu-item">
+                    <a href="publication.html"><i class="fas fa-bullhorn"></i> Publication</a>
+                </div>
+
+                <p class="menu-title">Système</p>
+                <div class="menu-item">
+                    <a href="personnalisation.html"><i class="fas fa-paint-brush"></i> Personnalisation</a>
+                </div>
+                <div class="menu-item">
+                    <a href="donnees.html"><i class="fas fa-database"></i> Données</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="welcome">
+                    <div class="user-avatar">A</div>
+                    <div class="user-info">
+                        <h3>Bonjour, Administrateur</h3>
+                        <p>Gestion des attestations</p>
+                    </div>
+                </div>
+                <button type="button" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Déconnexion
+                </button>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="page-header">
+                    <h1 class="page-title">Gestion des Attestations</h1>
+                    <p class="page-description">Générez et gérez les attestations de scolarité et les certificats</p>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon primary">
+                            <i class="fas fa-file-certificate"></i>
+                        </div>
+                        <div class="stat-title">Total attestations</div>
+                        <div class="stat-value">324</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            18% ce mois
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-title">Attestations validées</div>
+                        <div class="stat-value">298</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            12% ce mois
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-title">En attente</div>
+                        <div class="stat-value">26</div>
+                        <div class="stat-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            8% ce mois
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon danger">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-title">Rejetées</div>
+                        <div class="stat-value">8</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-down"></i>
+                            15% ce mois
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h2 class="card-title">Actions rapides</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <button class="btn btn-primary btn-lg">
+                                <i class="fas fa-plus"></i>
+                                Nouvelle attestation
+                            </button>
+                            <button class="btn btn-success btn-lg">
+                                <i class="fas fa-file-import"></i>
+                                Import en masse
+                            </button>
+                            <button class="btn btn-warning btn-lg">
+                                <i class="fas fa-download"></i>
+                                Exporter toutes
+                            </button>
+                            <button class="btn btn-outline btn-lg">
+                                <i class="fas fa-cog"></i>
+                                Paramètres
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search and Filters -->
+                <div class="card mb-6">
+                    <div class="card-body">
+                        <div class="search-filters">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Rechercher une attestation..." class="form-control">
+                            </div>
+                            <select class="form-control" style="width: auto;">
+                                <option value="">Tous les types</option>
+                                <option value="scolarite">Attestation de scolarité</option>
+                                <option value="diplome">Certificat de diplôme</option>
+                                <option value="stage">Attestation de stage</option>
+                                <option value="presence">Certificat de présence</option>
+                            </select>
+                            <select class="form-control" style="width: auto;">
+                                <option value="">Tous les statuts</option>
+                                <option value="pending">En attente</option>
+                                <option value="approved">Validée</option>
+                                <option value="rejected">Rejetée</option>
+                            </select>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-filter"></i>
+                                Filtrer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificates Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Liste des attestations</h2>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-download"></i>
+                                Exporter
+                            </button>
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-print"></i>
+                                Imprimer
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Étudiant</th>
+                                        <th>Type d'attestation</th>
+                                        <th>Date de demande</th>
+                                        <th>Statut</th>
+                                        <th>Validé par</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-center gap-3">
+                                                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.875rem;">LM</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Lucas Martin</div>
+                                                    <small style="color: var(--gray-500);">Terminale S</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Attestation de scolarité</td>
+                                        <td>15/01/2024</td>
+                                        <td><span class="badge badge-success">Validée</span></td>
+                                        <td>Marie Dupont</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-success btn-sm">
+                                                    <i class="fas fa-download"></i>
+                                                </button>
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-print"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-center gap-3">
+                                                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.875rem;">ED</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Emma Dubois</div>
+                                                    <small style="color: var(--gray-500);">1ère L</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Certificat de diplôme</td>
+                                        <td>12/01/2024</td>
+                                        <td><span class="badge badge-warning">En attente</span></td>
+                                        <td>-</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-success btn-sm">
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-center gap-3">
+                                                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.875rem;">TH</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Thomas Henry</div>
+                                                    <small style="color: var(--gray-500);">2nde</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Attestation de stage</td>
+                                        <td>10/01/2024</td>
+                                        <td><span class="badge badge-danger">Rejetée</span></td>
+                                        <td>Jean Martin</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-center gap-3">
+                                                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.875rem;">CL</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Chloé Leroy</div>
+                                                    <small style="color: var(--gray-500);">3ème</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Certificat de présence</td>
+                                        <td>08/01/2024</td>
+                                        <td><span class="badge badge-success">Validée</span></td>
+                                        <td>Sophie Bernard</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-success btn-sm">
+                                                    <i class="fas fa-download"></i>
+                                                </button>
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-print"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template Management -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h2 class="card-title">Modèles d'attestations</h2>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-plus"></i>
+                            Nouveau modèle
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 style="margin-bottom: 0.5rem;">Attestation de scolarité</h4>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">
+                                        Modèle standard pour les attestations de scolarité
+                                    </p>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-outline btn-sm">Modifier</button>
+                                        <button class="btn btn-outline btn-sm">Prévisualiser</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 style="margin-bottom: 0.5rem;">Certificat de diplôme</h4>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">
+                                        Modèle pour les certificats de diplôme
+                                    </p>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-outline btn-sm">Modifier</button>
+                                        <button class="btn btn-outline btn-sm">Prévisualiser</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 style="margin-bottom: 0.5rem;">Attestation de stage</h4>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">
+                                        Modèle pour les attestations de stage
+                                    </p>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-outline btn-sm">Modifier</button>
+                                        <button class="btn btn-outline btn-sm">Prévisualiser</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

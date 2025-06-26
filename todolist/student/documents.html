@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mes Documents Officiels</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Style personnalisé -->
+    <style>
+      :root {
+        --primary-color: #6a4949;
+        --secondary-color: #5e3b3b;
+        --accent-color: #af5656;
+        --light-bg: #f8f9fa;
+        --dark-text: #060e16;
+        --success-color: #d12844;
+      }
+
+      body {
+        background-color: var(--light-bg);
+        font-family: "Poppins", sans-serif;
+        color: var(--dark-text);
+      }
+
+      .navbar {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-brand {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        font-size: 1.2rem;
+      }
+
+      .container {
+        max-width: 800px;
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      h1 {
+        color: var(--secondary-color);
+        font-weight: 600;
+        position: relative;
+        padding-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      h1::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--accent-color);
+        border-radius: 2px;
+      }
+
+      .list-group {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        border: none;
+      }
+
+      .list-group-item {
+        padding: 1.25rem 1.5rem;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        background-color: white;
+      }
+
+      .list-group-item:last-child {
+        border-bottom: none;
+      }
+
+      .list-group-item:hover {
+        transform: translateX(8px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .list-group-item.disabled {
+        background-color: #f8f9fa;
+        color: #6c757d;
+      }
+
+      .badge {
+        font-weight: 500;
+        padding: 0.5rem 0.8rem;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .badge.bg-success {
+        background-color: var(--success-color) !important;
+      }
+
+      .text-muted {
+        opacity: 0.8;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateX(-20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .doc-item {
+        animation: slideIn 0.5s ease forwards;
+        opacity: 0;
+      }
+
+      /* Délais d'animation pour chaque élément */
+      .doc-item:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .doc-item:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+      .doc-item:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .doc-item:nth-child(4) {
+        animation-delay: 0.5s;
+      }
+
+      /* Effet de vague au survol */
+      .list-group-item-action:hover::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--accent-color);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 1.8rem;
+        }
+
+        .list-group-item {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+      <div class="container-fluid d-flex align-items-center">
+        <!-- Back Arrow (hidden on dashboard) -->
+        <button
+          id="backArrow"
+          class="btn btn-link text-white me-2"
+          style="font-size: 1.5rem; display: none"
+          aria-label="Retour"
+        >
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-graduation-cap me-2"></i>Portail Étudiant
+        </a>
+      </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container my-5">
+      <h1 class="mb-4 text-center">
+        <i class="fas fa-file-alt me-2"></i>Mes Documents Officiels
+      </h1>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div
+            id="loading-indicator"
+            class="text-center my-3"
+            style="display: none"
+          >
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2">Chargement des documents...</p>
+          </div>
+          <div id="empty-state" class="text-center my-3" style="display: none">
+            <p class="text-muted">Aucun document disponible pour le moment.</p>
+          </div>
+          <div class="list-group" id="document-list">
+            <!-- Documents will be loaded here by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Message d'information -->
+      <div class="mt-5 text-center">
+        <div class="alert alert-info bg-white border-0 shadow-sm">
+          <div class="d-flex align-items-center justify-content-center">
+            <i class="fas fa-info-circle fa-2x text-info me-3"></i>
+            <div>
+              <h5 class="mb-1">Comment télécharger vos documents</h5>
+              <p class="mb-0 small">
+                Cliquez sur le bouton "Télécharger" pour obtenir le document au
+                format PDF.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS (bundle includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const backArrow = document.getElementById("backArrow");
+        if (backArrow) {
+          backArrow.style.display = "inline-block"; // Show the back arrow
+          backArrow.addEventListener("click", () => {
+            window.history.back();
+          });
+        }
+
+        const documentList = document.getElementById("document-list");
+        const loadingIndicator = document.getElementById("loading-indicator");
+        const emptyState = document.getElementById("empty-state");
+
+        async function fetchDocuments() {
+          loadingIndicator.style.display = "block";
+          documentList.innerHTML = ""; // Clear existing content
+          emptyState.style.display = "none";
+
+          try {
+            const response = await fetch("../get_student_documents.php");
+            console.log("Response status:", response.status); // Log the HTTP status
+            const data = await response.json();
+            console.log("Response data:", data); // Log the JSON response
+
+            loadingIndicator.style.display = "none";
+
+            if (data.success && data.documents.length > 0) {
+              data.documents.forEach((doc, index) => {
+                const docItem = document.createElement("a");
+                docItem.href = `../uploads/${doc.chemin_fichier}`;
+                docItem.target = "_blank"; // Open in new tab
+                docItem.className =
+                  "list-group-item list-group-item-action doc-item d-flex justify-content-between align-items-center";
+                docItem.style.animationDelay = `${0.2 + index * 0.1}s`;
+
+                const fileExtension = doc.chemin_fichier
+                  .split(".")
+                  .pop()
+                  .toLowerCase();
+                let iconClass = "fas fa-file";
+                let iconColorClass = "text-muted";
+                let bgColorClass = "bg-secondary";
+
+                if (fileExtension === "pdf") {
+                  iconClass = "fas fa-file-pdf";
+                  iconColorClass = "text-danger";
+                  bgColorClass = "bg-danger";
+                } else if (
+                  ["jpg", "jpeg", "png", "gif"].includes(fileExtension)
+                ) {
+                  iconClass = "fas fa-file-image";
+                  iconColorClass = "text-info";
+                  bgColorClass = "bg-info";
+                } else if (["doc", "docx"].includes(fileExtension)) {
+                  iconClass = "fas fa-file-word";
+                  iconColorClass = "text-primary";
+                  bgColorClass = "bg-primary";
+                } else if (["xls", "xlsx"].includes(fileExtension)) {
+                  iconClass = "fas fa-file-excel";
+                  iconColorClass = "text-success";
+                  bgColorClass = "bg-success";
+                }
+
+                const submissionDate = new Date(
+                  doc.date_soumission
+                ).toLocaleDateString("fr-FR");
+                const statusBadgeClass =
+                  doc.statut === "Approuvé"
+                    ? "bg-success"
+                    : doc.statut === "En attente"
+                    ? "bg-warning"
+                    : "bg-danger";
+
+                docItem.innerHTML = `
+                    <div class="d-flex align-items-center">
+                        <div class="icon-wrapper ${bgColorClass} bg-opacity-10 p-3 rounded-circle me-3">
+                            <i class="${iconClass} ${iconColorClass} fa-lg"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1">${doc.nom_document}</h5>
+                            <p class="mb-0 text-muted small">Type: ${doc.type_document} | Soumis le: ${submissionDate}</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 align-items-center">
+                        <span class="badge ${statusBadgeClass}">
+                            <i class="fas fa-info-circle me-1"></i> ${doc.statut}
+                        </span>
+                        <a href="../generate_document_pdf.php?id_document=${doc.id_document}" target="_blank" class="btn btn-sm btn-primary">
+                            <i class="fas fa-file-pdf me-1"></i> PDF
+                        </a>
+                    </div>
+                `;
+                documentList.appendChild(docItem);
+              });
+            } else {
+              emptyState.style.display = "block";
+            }
+          } catch (error) {
+            loadingIndicator.style.display = "none";
+            console.error("Error fetching documents:", error);
+            alert("Erreur lors du chargement des documents.");
+            emptyState.textContent =
+              "Erreur lors du chargement des documents. Veuillez réessayer plus tard.";
+            emptyState.style.display = "block";
+          }
+        }
+
+        fetchDocuments();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mon Historique</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Animate.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #725454;
+        --secondary-color: #f8f9fc;
+        --accent-color: #3f2323;
+      }
+
+      body {
+        background-color: var(--secondary-color);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .navbar {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--accent-color) 100%
+        );
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .card-header {
+        background-color: white;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .list-group-item {
+        transition: all 0.3s ease;
+        border-left: 0;
+        border-right: 0;
+        padding: 1.25rem 1.5rem;
+      }
+
+      .list-group-item:hover {
+        background-color: rgba(248, 249, 252, 0.8);
+        transform: translateX(5px);
+      }
+
+      .action-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+
+      .login-icon {
+        background-color: rgba(28, 200, 138, 0.1);
+        color: #1cc88a;
+      }
+
+      .download-icon {
+        background-color: rgba(231, 74, 59, 0.1);
+        color: #e74a3b;
+      }
+
+      .message-icon {
+        background-color: rgba(54, 185, 204, 0.1);
+        color: #36b9cc;
+      }
+
+      .profile-icon {
+        background-color: rgba(246, 194, 62, 0.1);
+        color: #f6c23e;
+      }
+
+      .view-icon {
+        background-color: rgba(108, 117, 125, 0.1);
+        color: #6c757d;
+      }
+
+      .timeline {
+        position: relative;
+        padding-left: 60px;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 30px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          var(--primary-color),
+          rgba(78, 115, 223, 0.3)
+        );
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 1.5rem;
+      }
+
+      .timeline-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .timeline-dot {
+        position: absolute;
+        left: -50px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        border: 4px solid white;
+        z-index: 1;
+      }
+
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+
+      @keyframes floating {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.5s ease-in forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .delay-1 {
+        animation-delay: 0.2s;
+      }
+      .delay-2 {
+        animation-delay: 0.4s;
+      }
+      .delay-3 {
+        animation-delay: 0.6s;
+      }
+      .delay-4 {
+        animation-delay: 0.8s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+      <div class="container-fluid d-flex align-items-center">
+        <!-- Back Arrow (hidden on dashboard) -->
+        <button
+          id="backArrow"
+          class="btn btn-link text-white me-2"
+          style="font-size: 1.5rem; display: none"
+          aria-label="Retour"
+        >
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-graduation-cap me-2"></i>Portail Étudiant
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="page d'acceuil.html"
+                ><i class="fas fa-home me-1"></i> Accueil</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="avis.html"
+                ><i class="fas fa-comment-dots me-1"></i> Avis</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#"
+                ><i class="fas fa-history me-1"></i> Historique</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="adminstratio.html"
+                ><i class="fas fa-user me-1"></i> Mon Compte</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container my-5">
+      <h1 class="mb-4 text-center animate__animated animate__fadeIn">
+        <i class="fas fa-history text-primary me-2 floating"></i>Mon Historique
+      </h1>
+      <p
+        class="text-center text-muted mb-5 animate__animated animate__fadeIn animate__delay-1s"
+      >
+        Retrouvez toutes vos activités récentes
+      </p>
+
+      <!-- Liste des actions -->
+      <div class="card shadow-sm animate__animated animate__fadeInUp">
+        <div class="card-header bg-white py-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-0">
+              <i class="fas fa-list-ul me-2 text-primary"></i>Dernières actions
+            </h5>
+            <div class="dropdown">
+              <button
+                class="btn btn-sm btn-outline-primary dropdown-toggle"
+                type="button"
+                id="filterDropdown"
+                data-bs-toggle="dropdown"
+              >
+                <i class="fas fa-filter me-1"></i>Filtrer
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item active" href="#"
+                    >Toutes les actions</a
+                  >
+                </li>
+                <li><a class="dropdown-item" href="#">Connexions</a></li>
+                <li><a class="dropdown-item" href="#">Documents</a></li>
+                <li><a class="dropdown-item" href="#">Messages</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="timeline">
+            <!-- Item 1 -->
+            <div class="timeline-item fade-in delay-1">
+              <div class="timeline-dot pulse"></div>
+              <div class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center">
+                    <div class="action-icon login-icon">
+                      <i class="fas fa-sign-in-alt"></i>
+                    </div>
+                    <div>
+                      <strong>Connexion réussie</strong>
+                      <p class="mb-0 text-muted">
+                        Depuis IP: 192.168.1.1 • Navigateur: Chrome
+                      </p>
+                    </div>
+                  </div>
+                  <div class="text-end">
+                    <small class="d-block text-muted">Aujourd'hui</small>
+                    <small class="d-block text-primary fw-bold">09:45</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="timeline-item fade-in delay-2">
+              <div class="timeline-dot"></div>
+              <div class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center">
+                    <div class="action-icon download-icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div>
+                      <strong>Téléchargement</strong>
+                      <p class="mb-0 text-muted">
+                        Relevé de notes - Semestre 2 • Format PDF
+                      </p>
+                    </div>
+                  </div>
+                  <div class="text-end">
+                    <small class="d-block text-muted">Hier</small>
+                    <small class="d-block text-primary fw-bold">15:22</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="timeline-item fade-in delay-3">
+              <div class="timeline-dot"></div>
+              <div class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center">
+                    <div class="action-icon message-icon">
+                      <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <div>
+                      <strong>Message envoyé</strong>
+                      <p class="mb-0 text-muted">
+                        À: Service administratif • Sujet: Demande de duplicata
+                      </p>
+                    </div>
+                  </div>
+                  <div class="text-end">
+                    <small class="d-block text-muted">Lundi, 07 Avr</small>
+                    <small class="d-block text-primary fw-bold">11:18</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="timeline-item fade-in delay-4">
+              <div class="timeline-dot"></div>
+              <div class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center">
+                    <div class="action-icon profile-icon">
+                      <i class="fas fa-user-edit"></i>
+                    </div>
+                    <div>
+                      <strong>Profil mis à jour</strong>
+                      <p class="mb-0 text-muted">
+                        Email modifié: nouvel.email@domain.com
+                      </p>
+                    </div>
+                  </div>
+                  <div class="text-end">
+                    <small class="d-block text-muted">Vendredi, 03 Avr</small>
+                    <small class="d-block text-primary fw-bold">16:45</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="timeline-item fade-in delay-4">
+              <div class="timeline-dot"></div>
+              <div class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center">
+                    <div class="action-icon view-icon">
+                      <i class="fas fa-eye"></i>
+                    </div>
+                    <div>
+                      <strong>Consultation</strong>
+                      <p class="mb-0 text-muted">
+                        Emploi du temps - Semaine 14
+                      </p>
+                    </div>
+                  </div>
+                  <div class="text-end">
+                    <small class="d-block text-muted">Jeudi, 02 Avr</small>
+                    <small class="d-block text-primary fw-bold">08:30</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer bg-white text-center py-3">
+          <button id="loadMore" class="btn btn-outline-primary">
+            <i class="fas fa-sync-alt me-2"></i>Charger plus d'activités
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+      <div class="container text-center">
+        <p class="mb-2">© 2025 Portail Étudiant - Tous droits réservés</p>
+        <div class="d-flex justify-content-center">
+          <a href="#" class="text-decoration-none text-muted mx-3"
+            ><i class="fas fa-info-circle me-1"></i> À propos</a
+          >
+          <a href="#" class="text-decoration-none text-muted mx-3"
+            ><i class="fas fa-envelope me-1"></i> Contact</a
+          >
+          <a href="#" class="text-decoration-none text-muted mx-3"
+            ><i class="fas fa-shield-alt me-1"></i> Confidentialité</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS + FontAwesome -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script personnalisé -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Animation des éléments de la timeline
+        const timelineItems = document.querySelectorAll(".timeline-item");
+
+        // Fonction pour vérifier si un élément est visible
+        function isElementInViewport(el) {
+          const rect = el.getBoundingClientRect();
+          return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <=
+              (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <=
+              (window.innerHeight || document.documentElement.clientWidth)
+          );
+        }
+
+        // Animation au scroll
+        function animateOnScroll() {
+          timelineItems.forEach((item, index) => {
+            if (isElementInViewport(item)) {
+              setTimeout(() => {
+                item.classList.add("animate__animated", "animate__fadeInRight");
+              }, index * 150);
+            }
+          });
+        }
+
+        // Charger plus d'éléments (simulation)
+        const loadMoreBtn = document.getElementById("loadMore");
+        loadMoreBtn.addEventListener("click", function () {
+          this.innerHTML =
+            '<i class="fas fa-spinner fa-spin me-2"></i>Chargement...';
+
+          // Simuler un chargement
+          setTimeout(() => {
+            // Créer un nouvel élément (simulation)
+            const newItem = document.createElement("div");
+            newItem.className =
+              "timeline-item animate__animated animate__fadeInRight";
+            newItem.innerHTML = `
+            <div class="timeline-dot"></div>
+            <div class="list-group-item">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                  <div class="action-icon view-icon">
+                    <i class="fas fa-book-open"></i>
+                  </div>
+                  <div>
+                    <strong>Consultation</strong>
+                    <p class="mb-0 text-muted">Notes du semestre 1</p>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <small class="d-block text-muted">Mercredi, 01 Avr</small>
+                  <small class="d-block text-primary fw-bold">14:15</small>
+                </div>
+              </div>
+            </div>
+          `;
+
+            document.querySelector(".timeline").appendChild(newItem);
+            this.innerHTML =
+              '<i class="fas fa-sync-alt me-2"></i>Charger plus d\'activités';
+
+            // Scroll vers le nouvel élément
+            newItem.scrollIntoView({ behavior: "smooth" });
+          }, 1500);
+        });
+
+        // Écouter l'événement scroll
+        window.addEventListener("scroll", animateOnScroll);
+        animateOnScroll(); // Exécuter une fois au chargement
+
+        // Animation des points de la timeline
+        const timelineDots = document.querySelectorAll(".timeline-dot");
+        timelineDots.forEach((dot) => {
+          dot.addEventListener("mouseenter", function () {
+            this.classList.add("animate__animated", "animate__pulse");
+          });
+
+          dot.addEventListener("mouseleave", function () {
+            this.classList.remove("animate__animated", "animate__pulse");
+          });
+        });
+
+        // Show back arrow if not on dashboard.html
+        const backArrow = document.getElementById("backArrow");
+        if (!window.location.pathname.endsWith("dashboard.html")) {
+          backArrow.style.display = "inline-block";
+          backArrow.addEventListener("click", function () {
+            window.history.back();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

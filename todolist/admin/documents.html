@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification des Documents - Web School Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">WS</div>
+                <h2>Web School</h2>
+            </div>
+            <nav class="sidebar-menu">
+                <p class="menu-title">Principal</p>
+                <div class="menu-item">
+                    <a href="dashboard.html"><i class="fas fa-home"></i> Tableau de bord</a>
+                </div>
+
+                <p class="menu-title">Gestion</p>
+                <div class="menu-item">
+                    <a href="comptes.html"><i class="fas fa-users-cog"></i> Comptes utilisateurs</a>
+                </div>
+                <div class="menu-item">
+                    <a href="etudiants.html"><i class="fas fa-user-graduate"></i> Étudiants</a>
+                </div>
+                <div class="menu-item">
+                    <a href="attestations.html"><i class="fas fa-file-certificate"></i> Attestations</a>
+                </div>
+                <div class="menu-item">
+                    <a href="programmes.html"><i class="fas fa-book"></i> Programmes</a>
+                </div>
+                <div class="menu-item">
+                    <a href="planning.html"><i class="fas fa-calendar-alt"></i> Planning</a>
+                </div>
+                 <div class="menu-item active">
+                    <a href="documents.html"><i class="fas fa-file-check"></i> Documents</a>
+                </div>
+
+                <p class="menu-title">Contenu</p>
+                <div class="menu-item">
+                    <a href="publication.html"><i class="fas fa-bullhorn"></i> Publication</a>
+                </div>
+                <div class="menu-item">
+                    <a href="personnalisation.html"><i class="fas fa-paint-brush"></i> Personnalisation</a>
+                </div>
+
+                <p class="menu-title">Données</p>
+                <div class="menu-item">
+                    <a href="donnees.html"><i class="fas fa-database"></i> Consultation</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="header">
+                <div class="welcome">
+                    <div class="user-avatar">A</div>
+                    <div class="user-info">
+                        <h3>Bonjour, Administrateur</h3>
+                        <p>Vérification des documents</p>
+                    </div>
+                </div>
+                <button type="button" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+            </header>
+
+            <div class="content">
+                <div class="page-header">
+                    <h1 class="page-title">Vérification des Documents</h1>
+                    <p class="page-description">Examinez et validez les documents soumis par les étudiants.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Documents en attente de vérification</h2>
+                        <div class="search-filters">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Rechercher par étudiant ou document..." class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Étudiant</th>
+                                        <th>Type de document</th>
+                                        <th>Date de soumission</th>
+                                        <th>Statut</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Lucas Martin</td>
+                                        <td>Carte d'identité</td>
+                                        <td>20/05/2024</td>
+                                        <td><span class="badge badge-warning">En attente</span></td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i> Aperçu</button>
+                                                <button class="btn btn-success btn-sm"><i class="fas fa-check"></i> Approuver</button>
+                                                <button class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Rejeter</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Emma Dubois</td>
+                                        <td>Justificatif de domicile</td>
+                                        <td>18/05/2024</td>
+                                        <td><span class="badge badge-warning">En attente</span></td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i> Aperçu</button>
+                                                <button class="btn btn-success btn-sm"><i class="fas fa-check"></i> Approuver</button>
+                                                <button class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Rejeter</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <td>Thomas Henry</td>
+                                        <td>Relevé de notes précédent</td>
+                                        <td>15/05/2024</td>
+                                        <td><span class="badge badge-success">Approuvé</span></td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i> Aperçu</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

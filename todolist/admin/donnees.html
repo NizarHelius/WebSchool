@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation des Données - Web School Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">WS</div>
+                <h2>Web School</h2>
+            </div>
+
+            <nav class="sidebar-menu">
+                <p class="menu-title">Principal</p>
+                <div class="menu-item">
+                    <a href="dashboard.html"><i class="fas fa-home"></i> Tableau de bord</a>
+                </div>
+
+                <p class="menu-title">Gestion</p>
+                <div class="menu-item">
+                    <a href="comptes.html"><i class="fas fa-users-cog"></i> Comptes</a>
+                </div>
+                <div class="menu-item">
+                    <a href="etudiants.html"><i class="fas fa-user-graduate"></i> Étudiants</a>
+                </div>
+                <div class="menu-item">
+                    <a href="attestations.html"><i class="fas fa-file-certificate"></i> Attestations</a>
+                </div>
+                <div class="menu-item">
+                    <a href="programmes.html"><i class="fas fa-book"></i> Programmes</a>
+                </div>
+                <div class="menu-item">
+                    <a href="planning.html"><i class="fas fa-calendar-alt"></i> Planning</a>
+                </div>
+                 <div class="menu-item">
+                    <a href="documents.html"><i class="fas fa-file-check"></i> Documents</a>
+                </div>
+
+                <p class="menu-title">Communication</p>
+                <div class="menu-item">
+                    <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                </div>
+                <div class="menu-item">
+                    <a href="publication.html"><i class="fas fa-bullhorn"></i> Publication</a>
+                </div>
+
+                <p class="menu-title">Système</p>
+                <div class="menu-item">
+                    <a href="personnalisation.html"><i class="fas fa-paint-brush"></i> Personnalisation</a>
+                </div>
+                <div class="menu-item active">
+                    <a href="donnees.html"><i class="fas fa-database"></i> Données</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="welcome">
+                    <div class="user-avatar">A</div>
+                    <div class="user-info">
+                        <h3>Bonjour, Administrateur</h3>
+                        <p>Consultation des données</p>
+                    </div>
+                </div>
+                <button type="button" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Déconnexion
+                </button>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="page-header">
+                    <h1 class="page-title">Consultation et Analyse des Données</h1>
+                    <p class="page-description">Explorez et analysez les données de la plateforme Web School</p>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon primary">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="stat-title">Total enregistrements</div>
+                        <div class="stat-value">45,892</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            12% ce mois
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon success">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-title">Taux de croissance</div>
+                        <div class="stat-value">8.5%</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            2.3% ce mois
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-title">Temps de réponse</div>
+                        <div class="stat-value">1.2s</div>
+                        <div class="stat-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            0.3s ce mois
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon danger">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="stat-title">Sécurité</div>
+                        <div class="stat-value">99.9%</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            0.1% ce mois
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Filters -->
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h2 class="card-title">Filtres de données</h2>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-download"></i>
+                            Exporter
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="search-filters">
+                            <div class="form-group">
+                                <label class="form-label">Période</label>
+                                <select class="form-control">
+                                    <option value="7days">7 derniers jours</option>
+                                    <option value="30days" selected>30 derniers jours</option>
+                                    <option value="90days">90 derniers jours</option>
+                                    <option value="1year">1 an</option>
+                                    <option value="custom">Personnalisé</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Type de données</label>
+                                <select class="form-control">
+                                    <option value="all" selected>Toutes</option>
+                                    <option value="users">Utilisateurs</option>
+                                    <option value="students">Étudiants</option>
+                                    <option value="certificates">Attestations</option>
+                                    <option value="publications">Publications</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Format d'export</label>
+                                <select class="form-control">
+                                    <option value="csv">CSV</option>
+                                    <option value="excel">Excel</option>
+                                    <option value="json">JSON</option>
+                                    <option value="pdf">PDF</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                                Analyser
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Tables -->
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h2 class="card-title">Données utilisateurs</h2>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-refresh"></i>
+                                Actualiser
+                            </button>
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-filter"></i>
+                                Filtres avancés
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Email</th>
+                                        <th>Rôle</th>
+                                        <th>Date d'inscription</th>
+                                        <th>Dernière connexion</th>
+                                        <th>Statut</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#001</td>
+                                        <td>Marie Dupont</td>
+                                        <td>marie.dupont@example.com</td>
+                                        <td><span class="badge badge-info">Enseignant</span></td>
+                                        <td>15/09/2023</td>
+                                        <td>Il y a 2 heures</td>
+                                        <td><span class="badge badge-success">Actif</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#002</td>
+                                        <td>Jean Martin</td>
+                                        <td>jean.martin@example.com</td>
+                                        <td><span class="badge badge-success">Étudiant</span></td>
+                                        <td>02/09/2023</td>
+                                        <td>Il y a 1 jour</td>
+                                        <td><span class="badge badge-success">Actif</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#003</td>
+                                        <td>Sophie Bernard</td>
+                                        <td>sophie.bernard@example.com</td>
+                                        <td><span class="badge badge-warning">Parent</span></td>
+                                        <td>10/09/2023</td>
+                                        <td>Il y a 3 jours</td>
+                                        <td><span class="badge badge-warning">Inactif</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#004</td>
+                                        <td>Pierre Durand</td>
+                                        <td>pierre.durand@example.com</td>
+                                        <td><span class="badge badge-danger">Administrateur</span></td>
+                                        <td>01/09/2023</td>
+                                        <td>Il y a 5 jours</td>
+                                        <td><span class="badge badge-danger">Suspendu</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Dashboard -->
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h2 class="card-title">Tableau de bord analytique</h2>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-calendar"></i>
+                                Période
+                            </button>
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-chart-bar"></i>
+                                Graphiques
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                            <!-- User Growth Chart -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 style="margin-bottom: 1rem;">Croissance des utilisateurs</h5>
+                                    <div style="height: 200px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; color: white;">
+                                        <div style="text-align: center;">
+                                            <i class="fas fa-chart-line" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                            <div>Graphique interactif</div>
+                                            <small>Cliquez pour voir les détails</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Activity Distribution -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 style="margin-bottom: 1rem;">Distribution des activités</h5>
+                                    <div style="height: 200px; background: linear-gradient(135deg, var(--success), #059669); border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; color: white;">
+                                        <div style="text-align: center;">
+                                            <i class="fas fa-chart-pie" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                            <div>Graphique circulaire</div>
+                                            <small>Répartition des actions</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Performance Metrics -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 style="margin-bottom: 1rem;">Métriques de performance</h5>
+                                    <div style="height: 200px; background: linear-gradient(135deg, var(--warning), #d97706); border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; color: white;">
+                                        <div style="text-align: center;">
+                                            <i class="fas fa-tachometer-alt" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                            <div>Indicateurs temps réel</div>
+                                            <small>Performance système</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Export Options -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Options d'export</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-file-csv" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                                    <h5>Export CSV</h5>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">
+                                        Exportez vos données au format CSV pour Excel
+                                    </p>
+                                    <button class="btn btn-primary btn-sm">Exporter</button>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-file-excel" style="font-size: 2rem; color: var(--success); margin-bottom: 1rem;"></i>
+                                    <h5>Export Excel</h5>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">
+                                        Fichier Excel avec graphiques intégrés
+                                    </p>
+                                    <button class="btn btn-success btn-sm">Exporter</button>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-file-pdf" style="font-size: 2rem; color: var(--danger); margin-bottom: 1rem;"></i>
+                                    <h5>Rapport PDF</h5>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">
+                                        Rapport détaillé au format PDF
+                                    </p>
+                                    <button class="btn btn-danger btn-sm">Générer</button>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-file-code" style="font-size: 2rem; color: var(--warning); margin-bottom: 1rem;"></i>
+                                    <h5>API JSON</h5>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">
+                                        Accès aux données via API REST
+                                    </p>
+                                    <button class="btn btn-warning btn-sm">Accéder</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

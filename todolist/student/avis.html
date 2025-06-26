@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Donner un Avis</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Animate.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #926464;
+        --secondary-color: #f8f9fc;
+        --accent-color: #572b2b;
+      }
+
+      body {
+        background-color: var(--secondary-color);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .navbar {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--accent-color) 100%
+        );
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--accent-color);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(78, 115, 223, 0.3);
+      }
+
+      .rating-option {
+        transition: all 0.2s ease;
+      }
+
+      .rating-option:hover {
+        background-color: rgba(78, 115, 223, 0.1);
+      }
+
+      .list-group-item {
+        transition: all 0.3s ease;
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .list-group-item:hover {
+        background-color: rgba(248, 249, 252, 0.8);
+      }
+
+      .badge {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+        border-radius: 50px;
+      }
+
+      .bg-success {
+        background-color: #1cc88a !important;
+      }
+
+      .bg-warning {
+        background-color: #f6c23e !important;
+      }
+
+      .bg-danger {
+        background-color: #e74a3b !important;
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(78, 115, 223, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(78, 115, 223, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(78, 115, 223, 0);
+        }
+      }
+
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+
+      @keyframes floating {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background-color: var(--primary-color);
+        opacity: 0;
+        z-index: 1000;
+        animation: confetti 3s ease-out;
+      }
+
+      @keyframes confetti {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+      <div class="container-fluid d-flex align-items-center">
+        <!-- Back Arrow (hidden on dashboard) -->
+        <button
+          id="backArrow"
+          class="btn btn-link text-white me-2"
+          style="font-size: 1.5rem; display: none"
+          aria-label="Retour"
+        >
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-graduation-cap me-2"></i>Portail Étudiant
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="page d'acceuil.html"
+                ><i class="fas fa-home me-1"></i> Accueil</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#"
+                ><i class="fas fa-comment-dots me-1"></i> Avis</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="adminstratio.html"
+                ><i class="fas fa-user me-1"></i> Mon Compte</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container my-5 animate__animated animate__fadeIn">
+      <h1 class="mb-4 text-center">
+        <i class="fas fa-comment-dots text-primary me-2 floating"></i>Votre Avis
+      </h1>
+      <p class="text-center text-muted mb-5">
+        Votre opinion compte pour améliorer notre établissement
+      </p>
+
+      <!-- Formulaire d'avis -->
+      <div class="card shadow-sm mb-5">
+        <div class="card-header bg-white py-3">
+          <h5 class="fw-bold mb-0">
+            <i class="fas fa-pencil-alt me-2 text-primary"></i>Partagez votre
+            expérience
+          </h5>
+        </div>
+        <div class="card-body">
+          <form id="avisForm">
+            <div class="mb-3">
+              <label for="avisTitle" class="form-label fw-bold"
+                >Titre de l'avis</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="avisTitle"
+                name="titre"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="avisContent" class="form-label fw-bold"
+                >Contenu de l'avis</label
+              >
+              <textarea
+                class="form-control"
+                id="avisContent"
+                name="contenu"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Soumettre l'avis
+            </button>
+          </form>
+          <div id="responseMessage" class="mt-3"></div>
+        </div>
+      </div>
+
+      <!-- Liste des avis existants -->
+      <h2 class="mb-4 text-center" style="color: var(--primary-color)">
+        <i class="fas fa-list-alt me-2"></i>Avis Récents
+      </h2>
+      <div id="avisList" class="list-group">
+        <!-- Avis will be loaded here by JavaScript -->
+        <div id="loading-avis" class="text-center my-3" style="display: none">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Chargement des avis...</span>
+          </div>
+          <p class="mt-2">Chargement des avis...</p>
+        </div>
+        <div
+          id="empty-avis-state"
+          class="text-center my-3"
+          style="display: none"
+        >
+          <p class="text-muted">Aucun avis disponible pour le moment.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+      <div class="container text-center">
+        <p class="mb-2">© 2010 Portail Étudiant - Tous droits réservés</p>
+        <div class="d-flex justify-content-center">
+          <a href="#" class="text-decoration-none text-muted mx-3"
+            ><i class="fas fa-info-circle me-1"></i> À propos</a
+          >
+          <a href="#" class="text-decoration-none text-muted mx-3"
+            ><i class="fas fa-envelope me-1"></i> Contact</a
+          >
+          <a href="#" class="text-decoration-none text-muted mx-3"
+            ><i class="fas fa-shield-alt me-1"></i> Confidentialité</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const backArrow = document.getElementById("backArrow");
+        // Show back arrow on all pages except dashboard.html
+        if (
+          window.location.pathname.indexOf("/student/dashboard.html") === -1
+        ) {
+          backArrow.style.display = "block";
+        }
+        backArrow.addEventListener("click", function () {
+          window.history.back();
+        });
+
+        const avisForm = document.getElementById("avisForm");
+        const responseMessage = document.getElementById("responseMessage");
+        const avisList = document.getElementById("avisList");
+        const loadingAvis = document.getElementById("loading-avis");
+        const emptyAvisState = document.getElementById("empty-avis-state");
+
+        // Function to fetch and display avis
+        async function fetchAvis() {
+          loadingAvis.style.display = "block";
+          emptyAvisState.style.display = "none";
+          avisList.innerHTML = ""; // Clear existing avis
+
+          try {
+            const response = await fetch("../get_avis.php"); // We will create this file next
+            const data = await response.json();
+
+            loadingAvis.style.display = "none";
+
+            if (data.success && data.avis.length > 0) {
+              data.avis.forEach((avis) => {
+                const avisItem = document.createElement("div");
+                avisItem.className =
+                  "list-group-item list-group-item-action flex-column align-items-start";
+                avisItem.innerHTML = `
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">${avis.titre}</h5>
+                                    <small class="text-muted">${new Date(
+                                      avis.date_creation
+                                    ).toLocaleString()}</small>
+                                </div>
+                                <p class="mb-1">${avis.contenu}</p>
+                                <small class="text-muted">Posté par: ${
+                                  avis.auteur
+                                }</small>
+                            `;
+                avisList.appendChild(avisItem);
+              });
+            } else {
+              emptyAvisState.style.display = "block";
+            }
+          } catch (error) {
+            console.error("Error fetching avis:", error);
+            loadingAvis.style.display = "none";
+            emptyAvisState.style.display = "block";
+            emptyAvisState.innerHTML =
+              '<p class="text-danger">Erreur lors du chargement des avis. Veuillez réessayer.</p>';
+          }
+        }
+
+        // Handle form submission
+        avisForm.addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          const formData = new FormData(avisForm);
+
+          try {
+            const response = await fetch("../add_avis.php", {
+              method: "POST",
+              body: formData,
+            });
+            const data = await response.json();
+
+            if (data.success) {
+              responseMessage.className = "alert alert-success";
+              responseMessage.textContent = data.message;
+              avisForm.reset(); // Clear form
+              fetchAvis(); // Reload avis list
+            } else {
+              responseMessage.className = "alert alert-danger";
+              responseMessage.textContent =
+                data.message + (data.error ? ": " + data.error : "");
+            }
+          } catch (error) {
+            console.error("Error submitting avis:", error);
+            responseMessage.className = "alert alert-danger";
+            responseMessage.textContent = "Une erreur réseau est survenue.";
+          }
+        });
+
+        // Initial fetch of avis
+        fetchAvis();
+      });
+    </script>
+  </body>
+</html>

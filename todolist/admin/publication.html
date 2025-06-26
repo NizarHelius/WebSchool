@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Publications - Web School Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">WS</div>
+                <h2>Web School</h2>
+            </div>
+
+            <nav class="sidebar-menu">
+                <p class="menu-title">Principal</p>
+                <div class="menu-item">
+                    <a href="dashboard.html"><i class="fas fa-home"></i> Tableau de bord</a>
+                </div>
+
+                <p class="menu-title">Gestion</p>
+                <div class="menu-item">
+                    <a href="comptes.html"><i class="fas fa-users-cog"></i> Comptes</a>
+                </div>
+                <div class="menu-item">
+                    <a href="etudiants.html"><i class="fas fa-user-graduate"></i> Étudiants</a>
+                </div>
+                <div class="menu-item">
+                    <a href="attestations.html"><i class="fas fa-file-certificate"></i> Attestations</a>
+                </div>
+                <div class="menu-item">
+                    <a href="programmes.html"><i class="fas fa-book"></i> Programmes</a>
+                </div>
+                <div class="menu-item">
+                    <a href="planning.html"><i class="fas fa-calendar-alt"></i> Planning</a>
+                </div>
+                 <div class="menu-item">
+                    <a href="documents.html"><i class="fas fa-file-check"></i> Documents</a>
+                </div>
+
+                <p class="menu-title">Communication</p>
+                <div class="menu-item">
+                    <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                </div>
+                <div class="menu-item active">
+                    <a href="publication.html"><i class="fas fa-bullhorn"></i> Publication</a>
+                </div>
+
+                <p class="menu-title">Système</p>
+                <div class="menu-item">
+                    <a href="personnalisation.html"><i class="fas fa-paint-brush"></i> Personnalisation</a>
+                </div>
+                <div class="menu-item">
+                    <a href="donnees.html"><i class="fas fa-database"></i> Données</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="welcome">
+                    <div class="user-avatar">A</div>
+                    <div class="user-info">
+                        <h3>Bonjour, Administrateur</h3>
+                        <p>Gestion des publications</p>
+                    </div>
+                </div>
+                <button type="button" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Déconnexion
+                </button>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="page-header">
+                    <h1 class="page-title">Gestion des Publications</h1>
+                    <p class="page-description">Créez et gérez le contenu publié sur la plateforme Web School</p>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon primary">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="stat-title">Total publications</div>
+                        <div class="stat-value">156</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            22% ce mois
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon success">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-title">Vues totales</div>
+                        <div class="stat-value">12,847</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            18% ce mois
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-title">En attente</div>
+                        <div class="stat-value">8</div>
+                        <div class="stat-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            5% ce mois
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon danger">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="stat-title">Interactions</div>
+                        <div class="stat-value">2,341</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            31% ce mois
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h2 class="card-title">Actions rapides</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <button class="btn btn-primary btn-lg">
+                                <i class="fas fa-plus"></i>
+                                Nouvelle publication
+                            </button>
+                            <button class="btn btn-success btn-lg">
+                                <i class="fas fa-upload"></i>
+                                Importer contenu
+                            </button>
+                            <button class="btn btn-warning btn-lg">
+                                <i class="fas fa-calendar"></i>
+                                Planifier publication
+                            </button>
+                            <button class="btn btn-outline btn-lg">
+                                <i class="fas fa-chart-line"></i>
+                                Analytics
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search and Filters -->
+                <div class="card mb-6">
+                    <div class="card-body">
+                        <div class="search-filters">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Rechercher une publication..." class="form-control">
+                            </div>
+                            <select class="form-control" style="width: auto;">
+                                <option value="">Tous les types</option>
+                                <option value="news">Actualités</option>
+                                <option value="event">Événements</option>
+                                <option value="academic">Académique</option>
+                                <option value="announcement">Annonces</option>
+                            </select>
+                            <select class="form-control" style="width: auto;">
+                                <option value="">Tous les statuts</option>
+                                <option value="published">Publié</option>
+                                <option value="draft">Brouillon</option>
+                                <option value="pending">En attente</option>
+                                <option value="archived">Archivé</option>
+                            </select>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-filter"></i>
+                                Filtrer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publications Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Liste des publications</h2>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-download"></i>
+                                Exporter
+                            </button>
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-columns"></i>
+                                Vue grille
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Titre</th>
+                                        <th>Type</th>
+                                        <th>Auteur</th>
+                                        <th>Date de publication</th>
+                                        <th>Statut</th>
+                                        <th>Vues</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <div style="font-weight: 600;">Nouveaux programmes d'études 2024</div>
+                                                <small style="color: var(--gray-500);">Découvrez nos nouveaux programmes...</small>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-info">Actualités</span></td>
+                                        <td>Marie Dupont</td>
+                                        <td>15/01/2024</td>
+                                        <td><span class="badge badge-success">Publié</span></td>
+                                        <td>1,247</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-success btn-sm">
+                                                    <i class="fas fa-share"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <div style="font-weight: 600;">Journée portes ouvertes - Février 2024</div>
+                                                <small style="color: var(--gray-500);">Venez découvrir notre établissement...</small>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-warning">Événement</span></td>
+                                        <td>Jean Martin</td>
+                                        <td>12/01/2024</td>
+                                        <td><span class="badge badge-success">Publié</span></td>
+                                        <td>892</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-success btn-sm">
+                                                    <i class="fas fa-share"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <div style="font-weight: 600;">Résultats du concours de mathématiques</div>
+                                                <small style="color: var(--gray-500);">Félicitations aux lauréats...</small>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-success">Académique</span></td>
+                                        <td>Sophie Bernard</td>
+                                        <td>10/01/2024</td>
+                                        <td><span class="badge badge-warning">En attente</span></td>
+                                        <td>0</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-success btn-sm">
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <div style="font-weight: 600;">Maintenance prévue - Système informatique</div>
+                                                <small style="color: var(--gray-500);">Interruption de service prévue...</small>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-danger">Annonce</span></td>
+                                        <td>Pierre Durand</td>
+                                        <td>08/01/2024</td>
+                                        <td><span class="badge badge-success">Publié</span></td>
+                                        <td>456</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-outline btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-success btn-sm">
+                                                    <i class="fas fa-share"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Categories -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h2 class="card-title">Catégories de contenu</h2>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-plus"></i>
+                            Nouvelle catégorie
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-newspaper" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                                    <h4>Actualités</h4>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem;">45 publications</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-calendar-alt" style="font-size: 2rem; color: var(--warning); margin-bottom: 1rem;"></i>
+                                    <h4>Événements</h4>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem;">23 publications</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-graduation-cap" style="font-size: 2rem; color: var(--success); margin-bottom: 1rem;"></i>
+                                    <h4>Académique</h4>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem;">67 publications</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-bullhorn" style="font-size: 2rem; color: var(--danger); margin-bottom: 1rem;"></i>
+                                    <h4>Annonces</h4>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem;">21 publications</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

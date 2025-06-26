@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Étudiants - Web School Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">WS</div>
+                <h2>Web School</h2>
+            </div>
+
+            <nav class="sidebar-menu">
+                <p class="menu-title">Principal</p>
+                <div class="menu-item">
+                    <a href="dashboard.html"><i class="fas fa-home"></i> Tableau de bord</a>
+                </div>
+
+                <p class="menu-title">Gestion</p>
+                <div class="menu-item">
+                    <a href="comptes.html"><i class="fas fa-users-cog"></i> Comptes</a>
+                </div>
+                <div class="menu-item active">
+                    <a href="etudiants.html"><i class="fas fa-user-graduate"></i> Étudiants</a>
+                </div>
+                <div class="menu-item">
+                    <a href="attestations.html"><i class="fas fa-file-certificate"></i> Attestations</a>
+                </div>
+                <div class="menu-item">
+                    <a href="programmes.html"><i class="fas fa-book"></i> Programmes</a>
+                </div>
+                <div class="menu-item">
+                    <a href="planning.html"><i class="fas fa-calendar-alt"></i> Planning</a>
+                </div>
+                 <div class="menu-item">
+                    <a href="documents.html"><i class="fas fa-file-check"></i> Documents</a>
+                </div>
+
+                <p class="menu-title">Communication</p>
+                <div class="menu-item">
+                    <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                </div>
+                <div class="menu-item">
+                    <a href="publication.html"><i class="fas fa-bullhorn"></i> Publication</a>
+                </div>
+
+                <p class="menu-title">Système</p>
+                <div class="menu-item">
+                    <a href="personnalisation.html"><i class="fas fa-paint-brush"></i> Personnalisation</a>
+                </div>
+                <div class="menu-item">
+                    <a href="donnees.html"><i class="fas fa-database"></i> Données</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="welcome">
+                    <div class="user-avatar">A</div>
+                    <div class="user-info">
+                        <h3>Bonjour, Administrateur</h3>
+                        <p>Gestion des étudiants</p>
+                    </div>
+                </div>
+                <button type="button" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Déconnexion
+                </button>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="page-header">
+                    <h1 class="page-title">Gestion des Étudiants</h1>
+                    <p class="page-description">Gérez les inscriptions, les profils et les parcours des étudiants</p>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon primary">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="stat-title">Total étudiants</div>
+                        <div class="stat-value">856</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            12% ce mois
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon success">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-title">Étudiants actifs</div>
+                        <div class="stat-value">798</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            8% ce mois
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-user-clock"></i>
+                        </div>
+                        <div class="stat-title">Nouvelles inscriptions</div>
+                        <div class="stat-value">58</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            15% ce mois
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon danger">
+                            <i class="fas fa-user-slash"></i>
+                        </div>
+                        <div class="stat-title">Étudiants inactifs</div>
+                        <div class="stat-value">42</div>
+                        <div class="stat-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            5% ce mois
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search and Filters -->
+                <div class="card mb-6">
+                    <div class="card-body">
+                        <div class="search-filters">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Rechercher un étudiant..." class="form-control">
+                            </div>
+                            <select class="form-control" style="width: auto;">
+                                <option value="">Toutes les classes</option>
+                                <option value="6eme">6ème</option>
+                                <option value="5eme">5ème</option>
+                                <option value="4eme">4ème</option>
+                                <option value="3eme">3ème</option>
+                                <option value="2nde">2nde</option>
+                                <option value="1ere">1ère</option>
+                                <option value="terminale">Terminale</option>
+                            </select>
+                            <select class="form-control" style="width: auto;">
+                                <option value="">Tous les statuts</option>
+                                <option value="active">Actif</option>
+                                <option value="inactive">Inactif</option>
+                                <option value="graduated">Diplômé</option>
+                            </select>
+                            <button class="btn btn-primary" data-modal="student-form-modal">
+                                <i class="fas fa-plus"></i>
+                                Nouvel étudiant
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Students Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Liste des étudiants</h2>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-download"></i>
+                                Exporter
+                            </button>
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-filter"></i>
+                                Filtres avancés
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Étudiant</th>
+                                        <th>Classe</th>
+                                        <th>Date d'inscription</th>
+                                        <th>Statut</th>
+                                        <th>Moyenne générale</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-center gap-3">
+                                                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.875rem;">LM</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Lucas Martin</div>
+                                                    <small style="color: var(--gray-500);">lucas.martin@student.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Terminale S</td>
+                                        <td>15/09/2023</td>
+                                        <td><span class="badge badge-success">Actif</span></td>
+                                        <td>16.5/20</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-warning btn-sm"><i class="fas fa-archive"></i> Archiver</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-center gap-3">
+                                                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.875rem;">ED</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Emma Dubois</div>
+                                                    <small style="color: var(--gray-500);">emma.dubois@student.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>1ère L</td>
+                                        <td>02/09/2023</td>
+                                        <td><span class="badge badge-success">Actif</span></td>
+                                        <td>15.8/20</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-warning btn-sm"><i class="fas fa-archive"></i> Archiver</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-center gap-3">
+                                                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.875rem;">TH</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Thomas Henry</div>
+                                                    <small style="color: var(--gray-500);">thomas.henry@student.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>2nde</td>
+                                        <td>10/09/2023</td>
+                                        <td><span class="badge badge-warning">Inactif</span></td>
+                                        <td>12.3/20</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-warning btn-sm"><i class="fas fa-archive"></i> Archiver</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-center gap-3">
+                                                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.875rem;">CL</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Chloé Leroy</div>
+                                                    <small style="color: var(--gray-500);">chloe.leroy@student.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>3ème</td>
+                                        <td>05/09/2023</td>
+                                        <td><span class="badge badge-success">Actif</span></td>
+                                        <td>17.2/20</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-warning btn-sm"><i class="fas fa-archive"></i> Archiver</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h2 class="card-title">Actions rapides</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <button class="btn btn-success btn-lg" data-modal="student-form-modal">
+                                <i class="fas fa-user-plus"></i>
+                                Inscrire un étudiant
+                            </button>
+                            <button class="btn btn-primary btn-lg">
+                                <i class="fas fa-file-import"></i>
+                                Import en masse
+                            </button>
+                            <button class="btn btn-warning btn-lg">
+                                <i class="fas fa-chart-bar"></i>
+                                Statistiques
+                            </button>
+                            <button class="btn btn-outline btn-lg">
+                                <i class="fas fa-envelope"></i>
+                                Envoyer un message
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Registration Form Modal -->
+    <div id="student-form-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-content" style="max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto;">
+            <div class="modal-header" style="border-bottom: 1px solid var(--gray-200); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                <h2 style="margin: 0; color: var(--gray-900);">Inscription d'un nouvel étudiant</h2>
+                <button class="btn btn-outline btn-sm" onclick="this.closest('.modal-backdrop').style.display='none'">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="student-registration-form" data-validate>
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.125rem;">
+                        <i class="fas fa-user"></i> Informations personnelles
+                    </h3>
+                    <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Prénom *</label>
+                            <input type="text" class="form-control" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nom de famille *</label>
+                            <input type="text" class="form-control" name="lastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date de naissance *</label>
+                            <input type="date" class="form-control" name="birthDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Genre</label>
+                            <select class="form-control" name="gender">
+                                <option value="">Sélectionner</option>
+                                <option value="male">Masculin</option>
+                                <option value="female">Féminin</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Numéro de téléphone</label>
+                            <input type="tel" class="form-control" name="phone" placeholder="+33 6 12 34 56 78">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Adresse email *</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Information -->
+                <div class="form-section" style="margin-top: 2rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.125rem;">
+                        <i class="fas fa-graduation-cap"></i> Informations académiques
+                    </h3>
+                    <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Classe actuelle *</label>
+                            <select class="form-control" name="currentClass" required>
+                                <option value="">Sélectionner une classe</option>
+                                <option value="6eme">6ème</option>
+                                <option value="5eme">5ème</option>
+                                <option value="4eme">4ème</option>
+                                <option value="3eme">3ème</option>
+                                <option value="2nde">2nde</option>
+                                <option value="1ere">1ère</option>
+                                <option value="terminale">Terminale</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Spécialité (si applicable)</label>
+                            <select class="form-control" name="specialization">
+                                <option value="">Aucune</option>
+                                <option value="s">Scientifique</option>
+                                <option value="l">Littéraire</option>
+                                <option value="es">Économique et Social</option>
+                                <option value="sti2d">STI2D</option>
+                                <option value="stmg">STMG</option>
+                                <option value="st2s">ST2S</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Établissement précédent</label>
+                            <input type="text" class="form-control" name="previousSchool" placeholder="Nom de l'établissement">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Année d'entrée *</label>
+                            <select class="form-control" name="entryYear" required>
+                                <option value="">Sélectionner l'année</option>
+                                <option value="2024">2024-2025</option>
+                                <option value="2023">2023-2024</option>
+                                <option value="2022">2022-2023</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="form-section" style="margin-top: 2rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.125rem;">
+                        <i class="fas fa-address-book"></i> Informations de contact
+                    </h3>
+                    <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Adresse</label>
+                            <input type="text" class="form-control" name="address" placeholder="Numéro et rue">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Code postal</label>
+                            <input type="text" class="form-control" name="postalCode" placeholder="75001">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Ville</label>
+                            <input type="text" class="form-control" name="city" placeholder="Paris">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Pays</label>
+                            <select class="form-control" name="country">
+                                <option value="FR" selected>France</option>
+                                <option value="BE">Belgique</option>
+                                <option value="CH">Suisse</option>
+                                <option value="CA">Canada</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Parent/Guardian Information -->
+                <div class="form-section" style="margin-top: 2rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.125rem;">
+                        <i class="fas fa-users"></i> Informations du responsable légal
+                    </h3>
+                    <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Nom du responsable *</label>
+                            <input type="text" class="form-control" name="guardianName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Relation avec l'étudiant *</label>
+                            <select class="form-control" name="guardianRelation" required>
+                                <option value="">Sélectionner</option>
+                                <option value="parent">Parent</option>
+                                <option value="tutor">Tuteur légal</option>
+                                <option value="grandparent">Grand-parent</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Téléphone du responsable *</label>
+                            <input type="tel" class="form-control" name="guardianPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email du responsable</label>
+                            <input type="email" class="form-control" name="guardianEmail" placeholder="parent@example.com">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Settings -->
+                <div class="form-section" style="margin-top: 2rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.125rem;">
+                        <i class="fas fa-cog"></i> Paramètres du compte
+                    </h3>
+                    <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Nom d'utilisateur *</label>
+                            <input type="text" class="form-control" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mot de passe *</label>
+                            <input type="password" class="form-control" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Confirmer le mot de passe *</label>
+                            <input type="password" class="form-control" name="confirmPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Statut initial</label>
+                            <select class="form-control" name="status">
+                                <option value="active" selected>Actif</option>
+                                <option value="inactive">Inactif</option>
+                                <option value="pending">En attente</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="form-section" style="margin-top: 2rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.125rem;">
+                        <i class="fas fa-info-circle"></i> Informations supplémentaires
+                    </h3>
+                    <div class="form-group">
+                        <label class="form-label">Notes ou commentaires</label>
+                        <textarea class="form-control" name="notes" rows="3" placeholder="Informations supplémentaires, allergies, besoins particuliers..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions" style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-200); display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" class="btn btn-outline" onclick="this.closest('.modal-backdrop').style.display='none'">
+                        Annuler
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Créer le compte étudiant
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Additional JavaScript for student form
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle student form submission
+            const studentForm = document.getElementById('student-registration-form');
+            if (studentForm) {
+                studentForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+                    
+                    // Validate password confirmation
+                    if (data.password !== data.confirmPassword) {
+                        window.adminDashboard.showNotification('Les mots de passe ne correspondent pas', 'error');
+                        return;
+                    }
+                    
+                    // Simulate form submission
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Création en cours...';
+                    submitBtn.disabled = true;
+                    
+                    setTimeout(() => {
+                        // Success simulation
+                        window.adminDashboard.showNotification('Compte étudiant créé avec succès !', 'success');
+                        
+                        // Reset form and close modal
+                        this.reset();
+                        document.getElementById('student-form-modal').style.display = 'none';
+                        
+                        // Reset button
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        
+                        // Optionally refresh the page or update the table
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1500);
+                    }, 2000);
+                });
+            }
+            
+            // Auto-generate username from name
+            const firstNameInput = document.querySelector('input[name="firstName"]');
+            const lastNameInput = document.querySelector('input[name="lastName"]');
+            const usernameInput = document.querySelector('input[name="username"]');
+            
+            function generateUsername() {
+                const firstName = firstNameInput.value.toLowerCase().replace(/[^a-z]/g, '');
+                const lastName = lastNameInput.value.toLowerCase().replace(/[^a-z]/g, '');
+                if (firstName && lastName) {
+                    usernameInput.value = `${firstName}.${lastName}`;
+                }
+            }
+            
+            if (firstNameInput && lastNameInput && usernameInput) {
+                firstNameInput.addEventListener('input', generateUsername);
+                lastNameInput.addEventListener('input', generateUsername);
+            }
+        });
+    </script>
+</body>
+</html> 

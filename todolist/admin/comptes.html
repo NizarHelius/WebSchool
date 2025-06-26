@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion des Comptes - Web School Admin</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">WS</div>
+          <h2>Web School</h2>
+        </div>
+
+        <nav class="sidebar-menu">
+          <p class="menu-title">Principal</p>
+          <div class="menu-item">
+            <a href="dashboard.html"
+              ><i class="fas fa-home"></i> Tableau de bord</a
+            >
+          </div>
+
+          <p class="menu-title">Gestion</p>
+          <div class="menu-item active">
+            <a href="comptes.html"><i class="fas fa-users-cog"></i> Comptes</a>
+          </div>
+          <div class="menu-item">
+            <a href="etudiants.html"
+              ><i class="fas fa-user-graduate"></i> Étudiants</a
+            >
+          </div>
+          <div class="menu-item">
+            <a href="attestations.html"
+              ><i class="fas fa-file-certificate"></i> Attestations</a
+            >
+          </div>
+          <div class="menu-item">
+            <a href="programmes.html"><i class="fas fa-book"></i> Programmes</a>
+          </div>
+          <div class="menu-item">
+            <a href="planning.html"
+              ><i class="fas fa-calendar-alt"></i> Planning</a
+            >
+          </div>
+          <div class="menu-item">
+            <a href="documents.html"
+              ><i class="fas fa-file-check"></i> Documents</a
+            >
+          </div>
+
+          <p class="menu-title">Communication</p>
+          <div class="menu-item">
+            <a href="notifications.html"
+              ><i class="fas fa-bell"></i> Notifications</a
+            >
+          </div>
+          <div class="menu-item">
+            <a href="publication.html"
+              ><i class="fas fa-bullhorn"></i> Publication</a
+            >
+          </div>
+
+          <p class="menu-title">Système</p>
+          <div class="menu-item">
+            <a href="personnalisation.html"
+              ><i class="fas fa-paint-brush"></i> Personnalisation</a
+            >
+          </div>
+          <div class="menu-item">
+            <a href="donnees.html"><i class="fas fa-database"></i> Données</a>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+          <div class="welcome">
+            <div class="user-avatar">A</div>
+            <div class="user-info">
+              <h3>Bonjour, Administrateur</h3>
+              <p>Gestion des comptes</p>
+            </div>
+          </div>
+          <button type="button" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Déconnexion
+          </button>
+        </header>
+
+        <!-- Content -->
+        <div class="content">
+          <div class="page-header">
+            <h1 class="page-title">Gestion des Comptes Utilisateurs</h1>
+            <p class="page-description">
+              Gérez les comptes utilisateurs, les rôles et les permissions
+            </p>
+          </div>
+
+          <!-- Statistics Cards -->
+          <div class="stats-grid">
+            <div class="stat-card fade-in-up">
+              <div class="stat-icon primary">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="stat-title">Total utilisateurs</div>
+              <div class="stat-value">1,248</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                15% ce mois
+              </div>
+            </div>
+
+            <div class="stat-card fade-in-up">
+              <div class="stat-icon success">
+                <i class="fas fa-user-check"></i>
+              </div>
+              <div class="stat-title">Utilisateurs actifs</div>
+              <div class="stat-value">1,156</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                8% ce mois
+              </div>
+            </div>
+
+            <div class="stat-card fade-in-up">
+              <div class="stat-icon warning">
+                <i class="fas fa-user-clock"></i>
+              </div>
+              <div class="stat-title">En attente</div>
+              <div class="stat-value">92</div>
+              <div class="stat-change negative">
+                <i class="fas fa-arrow-down"></i>
+                3% ce mois
+              </div>
+            </div>
+
+            <div class="stat-card fade-in-up">
+              <div class="stat-icon danger">
+                <i class="fas fa-user-slash"></i>
+              </div>
+              <div class="stat-title">Comptes suspendus</div>
+              <div class="stat-value">18</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-down"></i>
+                12% ce mois
+              </div>
+            </div>
+          </div>
+
+          <!-- Search and Filters -->
+          <div class="card mb-6">
+            <div class="card-body">
+              <div class="search-filters">
+                <div class="search-box">
+                  <i class="fas fa-search"></i>
+                  <input
+                    type="text"
+                    placeholder="Rechercher un utilisateur..."
+                    class="form-control"
+                  />
+                </div>
+                <select class="form-control" style="width: auto">
+                  <option value="">Tous les rôles</option>
+                  <option value="admin">Administrateur</option>
+                  <option value="teacher">Enseignant</option>
+                  <option value="student">Étudiant</option>
+                  <option value="parent">Parent</option>
+                </select>
+                <select class="form-control" style="width: auto">
+                  <option value="">Tous les statuts</option>
+                  <option value="active">Actif</option>
+                  <option value="pending">En attente</option>
+                  <option value="suspended">Suspendu</option>
+                </select>
+                <button class="btn btn-primary">
+                  <i class="fas fa-plus"></i>
+                  Nouveau compte
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Roles and Permissions Management -->
+          <div class="card mb-6">
+            <div class="card-header">
+              <h2 class="card-title">Gestion des Rôles</h2>
+              <button class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i>
+                Nouveau rôle
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="table-container">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Rôle</th>
+                      <th>Permissions</th>
+                      <th>Nombre d'utilisateurs</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Administrateur</td>
+                      <td>
+                        <span class="badge badge-info">Accès total</span>
+                      </td>
+                      <td>2</td>
+                      <td>
+                        <div class="d-flex gap-2">
+                          <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-edit"></i>
+                          </button>
+                          <button class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Enseignant</td>
+                      <td>
+                        <span class="badge badge-info">Gestion des notes</span>
+                        <span class="badge badge-info">Publications</span>
+                      </td>
+                      <td>15</td>
+                      <td>
+                        <div class="d-flex gap-2">
+                          <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-edit"></i>
+                          </button>
+                          <button class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Étudiant</td>
+                      <td>
+                        <span class="badge badge-info">Consultation</span>
+                      </td>
+                      <td>856</td>
+                      <td>
+                        <div class="d-flex gap-2">
+                          <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-edit"></i>
+                          </button>
+                          <button class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Users Table -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Liste des utilisateurs</h2>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline btn-sm">
+                  <i class="fas fa-download"></i>
+                  Exporter
+                </button>
+                <button class="btn btn-outline btn-sm">
+                  <i class="fas fa-filter"></i>
+                  Filtres
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-container">
+                <table class="table table-hover" id="usersTable">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nom Complet</th>
+                      <th>Email</th>
+                      <th>Rôle</th>
+                      <th>Statut</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Users will be loaded here by JavaScript -->
+                  </tbody>
+                </table>
+                <div
+                  id="loading-users"
+                  class="my-3 text-center"
+                  style="display: none"
+                >
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden"
+                      >Chargement des utilisateurs...</span
+                    >
+                  </div>
+                  <p class="mt-2">Chargement des utilisateurs...</p>
+                </div>
+                <div
+                  id="empty-users-state"
+                  class="my-3 text-center"
+                  style="display: none"
+                >
+                  <p class="text-muted">
+                    Aucun utilisateur disponible pour le moment.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="card mt-4">
+            <div class="card-body">
+              <div class="d-flex justify-between align-center">
+                <div>Affichage de 1 à 10 sur 1,248 résultats</div>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-outline btn-sm">Précédent</button>
+                  <button class="btn btn-primary btn-sm">1</button>
+                  <button class="btn btn-outline btn-sm">2</button>
+                  <button class="btn btn-outline btn-sm">3</button>
+                  <button class="btn btn-outline btn-sm">Suivant</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

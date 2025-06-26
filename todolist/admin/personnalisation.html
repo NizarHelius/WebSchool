@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personnalisation - Web School Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">WS</div>
+                <h2>Web School</h2>
+            </div>
+
+            <nav class="sidebar-menu">
+                <p class="menu-title">Principal</p>
+                <div class="menu-item">
+                    <a href="dashboard.html"><i class="fas fa-home"></i> Tableau de bord</a>
+                </div>
+
+                <p class="menu-title">Gestion</p>
+                <div class="menu-item">
+                    <a href="comptes.html"><i class="fas fa-users-cog"></i> Comptes</a>
+                </div>
+                <div class="menu-item">
+                    <a href="etudiants.html"><i class="fas fa-user-graduate"></i> Étudiants</a>
+                </div>
+                <div class="menu-item">
+                    <a href="attestations.html"><i class="fas fa-file-certificate"></i> Attestations</a>
+                </div>
+                <div class="menu-item">
+                    <a href="programmes.html"><i class="fas fa-book"></i> Programmes</a>
+                </div>
+                <div class="menu-item">
+                    <a href="planning.html"><i class="fas fa-calendar-alt"></i> Planning</a>
+                </div>
+                 <div class="menu-item">
+                    <a href="documents.html"><i class="fas fa-file-check"></i> Documents</a>
+                </div>
+
+                <p class="menu-title">Communication</p>
+                <div class="menu-item">
+                    <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+                </div>
+                <div class="menu-item">
+                    <a href="publication.html"><i class="fas fa-bullhorn"></i> Publication</a>
+                </div>
+
+                <p class="menu-title">Système</p>
+                <div class="menu-item active">
+                    <a href="personnalisation.html"><i class="fas fa-paint-brush"></i> Personnalisation</a>
+                </div>
+                <div class="menu-item">
+                    <a href="donnees.html"><i class="fas fa-database"></i> Données</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="welcome">
+                    <div class="user-avatar">A</div>
+                    <div class="user-info">
+                        <h3>Bonjour, Administrateur</h3>
+                        <p>Personnalisation</p>
+                    </div>
+                </div>
+                <button type="button" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Déconnexion
+                </button>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="page-header">
+                    <h1 class="page-title">Personnalisation de la Plateforme</h1>
+                    <p class="page-description">Personnalisez l'apparence et les fonctionnalités de Web School</p>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon primary">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="stat-title">Thèmes actifs</div>
+                        <div class="stat-value">3</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            1 nouveau
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon success">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-title">Utilisateurs personnalisés</div>
+                        <div class="stat-value">1,156</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            8% ce mois
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="stat-title">Modules configurés</div>
+                        <div class="stat-value">12</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            2 nouveaux
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in-up">
+                        <div class="stat-icon danger">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-title">Satisfaction UX</div>
+                        <div class="stat-value">94%</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            3% ce mois
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme Customization -->
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h2 class="card-title">Personnalisation du thème</h2>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-save"></i>
+                            Sauvegarder
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                            <!-- Color Scheme -->
+                            <div>
+                                <h4 style="margin-bottom: 1rem;">Schéma de couleurs</h4>
+                                <div class="d-grid" style="grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                                    <div class="form-group">
+                                        <label class="form-label">Couleur principale</label>
+                                        <input type="color" class="form-control" value="#2563eb" style="height: 40px;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Couleur secondaire</label>
+                                        <input type="color" class="form-control" value="#64748b" style="height: 40px;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Couleur d'accent</label>
+                                        <input type="color" class="form-control" value="#3b82f6" style="height: 40px;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Couleur de succès</label>
+                                        <input type="color" class="form-control" value="#10b981" style="height: 40px;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Typography -->
+                            <div>
+                                <h4 style="margin-bottom: 1rem;">Typographie</h4>
+                                <div class="d-grid" style="grid-template-columns: 1fr; gap: 1rem;">
+                                    <div class="form-group">
+                                        <label class="form-label">Police principale</label>
+                                        <select class="form-control">
+                                            <option value="inter" selected>Inter</option>
+                                            <option value="roboto">Roboto</option>
+                                            <option value="open-sans">Open Sans</option>
+                                            <option value="poppins">Poppins</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Taille de base</label>
+                                        <select class="form-control">
+                                            <option value="14px" selected>14px</option>
+                                            <option value="16px">16px</option>
+                                            <option value="18px">18px</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Hauteur de ligne</label>
+                                        <select class="form-control">
+                                            <option value="1.6" selected>1.6</option>
+                                            <option value="1.5">1.5</option>
+                                            <option value="1.7">1.7</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layout Options -->
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h2 class="card-title">Options de mise en page</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <div class="form-group">
+                                <label class="form-label">Largeur de la sidebar</label>
+                                <select class="form-control">
+                                    <option value="280px" selected>280px (Défaut)</option>
+                                    <option value="240px">240px (Compact)</option>
+                                    <option value="320px">320px (Large)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Style de navigation</label>
+                                <select class="form-control">
+                                    <option value="sidebar" selected>Sidebar fixe</option>
+                                    <option value="top">Navigation supérieure</option>
+                                    <option value="both">Les deux</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Mode d'affichage</label>
+                                <select class="form-control">
+                                    <option value="light" selected>Clair</option>
+                                    <option value="dark">Sombre</option>
+                                    <option value="auto">Automatique</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Densité de contenu</label>
+                                <select class="form-control">
+                                    <option value="comfortable" selected>Confortable</option>
+                                    <option value="compact">Compact</option>
+                                    <option value="spacious">Spacieux</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module Configuration -->
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h2 class="card-title">Configuration des modules</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-between align-center mb-3">
+                                        <h5 style="margin: 0;">Tableau de bord</h5>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">
+                                        Afficher les statistiques et actions rapides sur le tableau de bord
+                                    </p>
+                                    <button class="btn btn-outline btn-sm">Configurer</button>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-between align-center mb-3">
+                                        <h5 style="margin: 0;">Notifications</h5>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">
+                                        Système de notifications en temps réel
+                                    </p>
+                                    <button class="btn btn-outline btn-sm">Configurer</button>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-between align-center mb-3">
+                                        <h5 style="margin: 0;">Analytics</h5>
+                                        <label class="switch">
+                                            <input type="checkbox">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">
+                                        Suivi des performances et statistiques avancées
+                                    </p>
+                                    <button class="btn btn-outline btn-sm">Configurer</button>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-between align-center mb-3">
+                                        <h5 style="margin: 0;">API REST</h5>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">
+                                        Interface de programmation pour intégrations
+                                    </p>
+                                    <button class="btn btn-outline btn-sm">Configurer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Section -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Aperçu des changements</h2>
+                        <button class="btn btn-success btn-sm">
+                            <i class="fas fa-eye"></i>
+                            Aperçu en direct
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div style="border: 2px dashed var(--gray-300); border-radius: var(--border-radius); padding: 2rem; text-align: center;">
+                            <i class="fas fa-desktop" style="font-size: 3rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
+                            <h4>Aperçu de la plateforme</h4>
+                            <p style="color: var(--gray-600);">Cliquez sur "Aperçu en direct" pour voir vos modifications</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Switch styles */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--gray-300);
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+
+    <script src="script.js"></script>
+</body>
+</html> 
