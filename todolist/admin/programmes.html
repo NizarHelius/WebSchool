@@ -1,227 +1,283 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestion des Programmes - Web School Admin</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-logo">WS</div>
-                <h2>Web School</h2>
-            </div>
-
-            <nav class="sidebar-menu">
-                <p class="menu-title">Principal</p>
-                <div class="menu-item">
-                    <a href="dashboard.html"><i class="fas fa-home"></i> Tableau de bord</a>
-                </div>
-
-                <p class="menu-title">Gestion</p>
-                <div class="menu-item">
-                    <a href="comptes.html"><i class="fas fa-users-cog"></i> Comptes</a>
-                </div>
-                <div class="menu-item">
-                    <a href="etudiants.html"><i class="fas fa-user-graduate"></i> Étudiants</a>
-                </div>
-                <div class="menu-item">
-                    <a href="attestations.html"><i class="fas fa-file-certificate"></i> Attestations</a>
-                </div>
-                <div class="menu-item active">
-                    <a href="programmes.html"><i class="fas fa-book"></i> Programmes</a>
-                </div>
-                <div class="menu-item">
-                    <a href="planning.html"><i class="fas fa-calendar-alt"></i> Planning</a>
-                </div>
-                 <div class="menu-item">
-                    <a href="documents.html"><i class="fas fa-file-check"></i> Documents</a>
-                </div>
-
-                <p class="menu-title">Communication</p>
-                <div class="menu-item">
-                    <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
-                </div>
-                <div class="menu-item">
-                    <a href="publication.html"><i class="fas fa-bullhorn"></i> Publication</a>
-                </div>
-
-                <p class="menu-title">Système</p>
-                <div class="menu-item">
-                    <a href="personnalisation.html"><i class="fas fa-paint-brush"></i> Personnalisation</a>
-                </div>
-                <div class="menu-item">
-                    <a href="donnees.html"><i class="fas fa-database"></i> Données</a>
-                </div>
-            </nav>
-        </aside>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Header -->
-            <header class="header">
-                <div class="welcome">
-                    <div class="user-avatar">A</div>
-                    <div class="user-info">
-                        <h3>Bonjour, Administrateur</h3>
-                        <p>Gestion des programmes</p>
-                    </div>
-                </div>
-                <button type="button" class="logout-btn">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Déconnexion
-                </button>
-            </header>
-
-            <!-- Content -->
-            <div class="content">
-                <div class="page-header">
-                    <h1 class="page-title">Gestion des Programmes Académiques</h1>
-                    <p class="page-description">Gérez les niveaux, semestres et modules du programme scolaire.</p>
-                </div>
-
-                <!-- Levels (Niveau) Management -->
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h2 class="card-title">Niveaux d'étude</h2>
-                        <button class="btn btn-primary btn-sm">
-                            <i class="fas fa-plus"></i>
-                            Ajouter un niveau
-                        </button>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Nom du niveau</th>
-                                        <th>Responsable</th>
-                                        <th>Nombre de semestres</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Terminale</td>
-                                        <td>M. Leroux</td>
-                                        <td>2</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Première</td>
-                                        <td>Mme. Dubois</td>
-                                        <td>2</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Modules (Cours) Management -->
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h2 class="card-title">Modules de cours</h2>
-                        <button class="btn btn-primary btn-sm">
-                            <i class="fas fa-plus"></i>
-                            Ajouter un module
-                        </button>
-                    </div>
-                    <div class="card-body">
-                        <div class="search-filters mb-4">
-                            <div class="search-box">
-                                <i class="fas fa-search"></i>
-                                <input type="text" placeholder="Rechercher un module..." class="form-control">
-                            </div>
-                            <select class="form-control" style="width: auto;">
-                                <option value="">Filtrer par niveau</option>
-                                <option>Terminale</option>
-                                <option>Première</option>
-                            </select>
-                            <select class="form-control" style="width: auto;">
-                                <option value="">Filtrer par semestre</option>
-                                <option>Semestre 1</option>
-                                <option>Semestre 2</option>
-                            </select>
-                        </div>
-                        <div class="table-container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Module</th>
-                                        <th>Enseignant</th>
-                                        <th>Coefficient</th>
-                                        <th>Niveau</th>
-                                        <th>Semestre</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Mathématiques</td>
-                                        <td>M. Dupont</td>
-                                        <td>5</td>
-                                        <td>Terminale</td>
-                                        <td>Semestre 1</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Physique-Chimie</td>
-                                        <td>Mme. Curie</td>
-                                        <td>4</td>
-                                        <td>Terminale</td>
-                                        <td>Semestre 1</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Philosophie</td>
-                                        <td>M. Sartre</td>
-                                        <td>3</td>
-                                        <td>Terminale</td>
-                                        <td>Semestre 2</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">WS</div>
+          <h2>Web School</h2>
         </div>
+
+        <nav class="sidebar-menu">
+          <p class="menu-title">Principal</p>
+          <div class="menu-item">
+            <a href="dashboard.html"
+              ><i class="fas fa-home"></i> Tableau de bord</a
+            >
+          </div>
+
+          <p class="menu-title">Gestion</p>
+          <div class="menu-item">
+            <a href="comptes.html"><i class="fas fa-users-cog"></i> Comptes</a>
+          </div>
+          <div class="menu-item">
+            <a href="etudiants.html"
+              ><i class="fas fa-user-graduate"></i> Étudiants</a
+            >
+          </div>
+          <div class="menu-item">
+            <a href="attestations.html"
+              ><i class="fas fa-file-certificate"></i> Attestations</a
+            >
+          </div>
+          <div class="menu-item active">
+            <a href="programmes.html"><i class="fas fa-book"></i> Programmes</a>
+          </div>
+          <div class="menu-item">
+            <a href="planning.html"
+              ><i class="fas fa-calendar-alt"></i> Planning</a
+            >
+          </div>
+          <div class="menu-item">
+            <a href="documents.html"
+              ><i class="fas fa-file-check"></i> Documents</a
+            >
+          </div>
+
+          <p class="menu-title">Communication</p>
+          <div class="menu-item">
+            <a href="notifications.html"
+              ><i class="fas fa-bell"></i> Notifications</a
+            >
+          </div>
+          <div class="menu-item">
+            <a href="publication.html"
+              ><i class="fas fa-bullhorn"></i> Publication</a
+            >
+          </div>
+
+          <p class="menu-title">Système</p>
+          <div class="menu-item">
+            <a href="personnalisation.html"
+              ><i class="fas fa-paint-brush"></i> Personnalisation</a
+            >
+          </div>
+          <div class="menu-item">
+            <a href="donnees.html"><i class="fas fa-database"></i> Données</a>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+          <div class="welcome">
+            <div class="user-avatar">A</div>
+            <div class="user-info">
+              <h3>Bonjour, Administrateur</h3>
+              <p>Gestion des programmes</p>
+            </div>
+          </div>
+          <button type="button" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Déconnexion
+          </button>
+        </header>
+
+        <!-- Content -->
+        <div class="content">
+          <div class="page-header">
+            <h1 class="page-title">Gestion des Modules de Cours</h1>
+            <p class="page-description">
+              Gérez les modules de cours offerts par l'établissement.
+            </p>
+          </div>
+
+          <!-- Modules (Cours) Management -->
+          <div class="card mb-6">
+            <div class="card-header">
+              <h2 class="card-title">Liste des Modules</h2>
+              <button class="btn btn-primary btn-sm" id="add-module-btn">
+                <i class="fas fa-plus"></i>
+                Ajouter un module
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="search-filters mb-4">
+                <div class="search-box">
+                  <i class="fas fa-search"></i>
+                  <input
+                    type="text"
+                    placeholder="Rechercher un module..."
+                    class="form-control"
+                  />
+                </div>
+                <select class="form-control" style="width: auto">
+                  <option value="">Filtrer par semestre</option>
+                  <option>Semestre 1</option>
+                  <option>Semestre 2</option>
+                  <option>Semestre 3</option>
+                  <option>Semestre 4</option>
+                  <option>Semestre 5</option>
+                  <option>Semestre 6</option>
+                </select>
+              </div>
+              <div class="table-container">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Nom du module</th>
+                      <th>Code du module</th>
+                      <th>Coefficient</th>
+                      <th>Semestre</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="modulesTableBody">
+                    <!-- Modules will be loaded here by JavaScript -->
+                  </tbody>
+                </table>
+                <div
+                  id="loading-modules"
+                  class="my-3 text-center"
+                  style="display: none"
+                >
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden"
+                      >Chargement des modules...</span
+                    >
+                  </div>
+                  <p class="mt-2">Chargement des modules...</p>
+                </div>
+                <div
+                  id="empty-modules-state"
+                  class="my-3 text-center"
+                  style="display: none"
+                >
+                  <p class="text-muted">
+                    Aucun module disponible pour le moment.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add/Edit Module Modal -->
+    <div id="module-form-modal" class="modal-backdrop" style="display: none">
+      <div
+        class="modal-content"
+        style="max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto"
+      >
+        <div
+          class="modal-header"
+          style="
+            border-bottom: 1px solid var(--gray-200);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+          "
+        >
+          <h2 style="margin: 0; color: var(--gray-900)">
+            Ajouter un nouveau module
+          </h2>
+          <button class="btn btn-outline btn-sm close-button">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <form id="moduleForm" data-validate>
+          <div class="form-section">
+            <div
+              class="d-grid"
+              style="
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+              "
+            >
+              <div class="form-group">
+                <label class="form-label">Nom du module *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="nom_module"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Code du module *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="code_module"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Coefficient *</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="coefficient"
+                  required
+                  min="1"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Semestre *</label>
+                <select class="form-control" name="semestre" required>
+                  <option value="">Sélectionner un semestre</option>
+                  <option value="1">Semestre 1</option>
+                  <option value="2">Semestre 2</option>
+                  <option value="3">Semestre 3</option>
+                  <option value="4">Semestre 4</option>
+                  <option value="5">Semestre 5</option>
+                  <option value="6">Semestre 6</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="form-actions"
+            style="
+              margin-top: 2rem;
+              padding-top: 1.5rem;
+              border-top: 1px solid var(--gray-200);
+              display: flex;
+              gap: 1rem;
+              justify-content: flex-end;
+            "
+          >
+            <button type="button" class="btn btn-outline close-button">
+              Annuler
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i>
+              Enregistrer le module
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
-</html> 
-</html> 
+  </body>
+</html>

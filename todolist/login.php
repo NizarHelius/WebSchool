@@ -2,6 +2,8 @@
 session_start();
 require_once 'db.php'; // Connexion à la base de données
 
+$pdo = get_db_connection(); // Initialize $pdo by calling the function
+
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -22,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ) {
 
                     $_SESSION['user_id'] = $user['id_utilisateur'];
-                    $_SESSION['role_id'] = $user['id_role'];
+                    $_SESSION['id_role'] = $user['id_role'];
                     $_SESSION['loggedin'] = true;
 
                     // Mettre à jour la date du dernier accès
@@ -53,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Fonction pour migrer les anciens hashs (à exécuter une fois)
+// Fonction pour migrer les anciens hashs (à exécuter une seule fois)
 function migrateOldHashes($pdo)
 {
     $users = $pdo->query("SELECT id_utilisateur, mot_de_passe FROM utilisateur")->fetchAll();

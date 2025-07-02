@@ -5,6 +5,8 @@ error_reporting(E_ALL);
 session_start();
 require_once 'db.php';
 
+$pdo = get_db_connection();
+
 header('Content-Type: application/json');
 
 if (!isset($_SESSION['user_id'])) {
@@ -15,8 +17,8 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $titre = filter_input(INPUT_POST, 'titre', FILTER_SANITIZE_STRING);
-    $contenu = filter_input(INPUT_POST, 'contenu', FILTER_SANITIZE_STRING);
+    $titre = htmlspecialchars(trim($_POST['titre']), ENT_QUOTES, 'UTF-8');
+    $contenu = htmlspecialchars(trim($_POST['contenu']), ENT_QUOTES, 'UTF-8');
 
     if (empty($titre) || empty($contenu)) {
         echo json_encode(['success' => false, 'message' => 'Title and content cannot be empty.']);

@@ -4,6 +4,9 @@ error_reporting(E_ALL & ~E_DEPRECATED);
 ini_set('display_errors', 0);
 session_start();
 require_once 'db.php'; // Adjust path as needed
+
+$pdo = get_db_connection();
+
 require_once 'tcpdf/tcpdf.php'; // Adjust path to TCPDF library
 
 if (!isset($_SESSION['user_id'])) {
