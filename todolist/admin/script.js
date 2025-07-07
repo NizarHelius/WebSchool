@@ -2,11 +2,14 @@
 // AdminDashboard script version: 2023-11-20_Final_Module_Fix
 class AdminDashboard {
   constructor() {
+    console.log("AdminDashboard: Constructor called."); // Debugging: Check if constructor is called
     this.init();
   }
 
   init() {
+    console.log("AdminDashboard: init() called."); // Debugging: Check if init() is called
     this.setupSidebar();
+    this.handleResize();
     this.setupMobileMenu();
     this.setupActiveNavigation();
     this.setupLogout();
@@ -16,7 +19,9 @@ class AdminDashboard {
     this.setupModals();
     this.setupNotifications();
     this.fetchPendingAvis();
+    this.setupAvisActionButtons();
 
+    // Page-specific initializations
     if (window.location.pathname.endsWith("comptes.html")) {
       this.fetchUsers();
       this.setupAddUserForm();
@@ -25,6 +30,7 @@ class AdminDashboard {
     if (window.location.pathname.endsWith("etudiants.html")) {
       this.fetchStudents();
       this.setupArchiveStudentButtons();
+      this.setupAddStudentForm();
     }
     // Debugging path
     console.log("Current pathname for init:", window.location.pathname);
@@ -149,24 +155,29 @@ class AdminDashboard {
   }
 
   setupLogout() {
-    const logoutBtn = document.querySelector(".logout-btn");
+    const logoutBtn = document.getElementById("logoutAdminButton");
     if (logoutBtn) {
+      console.log("Logout button found."); // Debugging: check if button is found
       logoutBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        this.showConfirmDialog(
-          "Déconnexion",
-          "Êtes-vous sûr de vouloir vous déconnecter ?",
-          () => {
-            // Add loading state
-            logoutBtn.innerHTML = '<div class="spinner"></div> Déconnexion...';
-            logoutBtn.disabled = true;
+        console.log("Logout button clicked!"); // Debugging: check if click is registered
 
-            // Simulate logout process
-            setTimeout(() => {
-              window.location.href = "login.html";
-            }, 1000);
-          }
-        );
+        // Temporarily bypass confirm dialog for testing
+        window.location.href = "/todolist/logout.php"; // Direct redirect for testing
+
+        // The original code with confirm dialog (commented out for now):
+        // this.showConfirmDialog(
+        //   "Déconnexion",
+        //   "Êtes-vous sûr de vouloir vous déconnecter ?",
+        //   () => {
+        //     logoutBtn.innerHTML = '<div class="spinner"></div> Déconnexion...';
+        //     logoutBtn.disabled = true;
+        //     window.location.href = "/todolist/logout.php";
+        //     setTimeout(() => {
+        //       window.location.href = "/todolist/login.php";
+        //     }, 500);
+        //   }
+        // );
       });
     }
   }
@@ -324,8 +335,11 @@ class AdminDashboard {
 
   setupModals() {
     document.querySelectorAll("[data-modal-open]").forEach((button) => {
-      button.addEventListener("click", () => {
+      console.log("setupModals: Found button with data-modal-open:", button); // Debugging: Confirm button is found
+      button.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent default action (e.g., SVG lookup if i tag is clicked)
         const modalId = button.dataset.modalOpen;
+        console.log("setupModals: Clicked button to open modal:", modalId); // Debugging: Confirm click event
         this.openModal(modalId);
       });
     });
@@ -863,13 +877,15 @@ class AdminDashboard {
   }
 
   async fetchStudents() {
-    console.log("Fetching students...");
+    console.log("fetchStudents: Function started."); // Debugging: Check if function is called
     const studentsTableBody = document.getElementById("studentsTableBody");
     const loadingIndicator = document.getElementById("loading-students");
     const emptyState = document.getElementById("empty-students-state");
 
     if (!studentsTableBody) {
-      console.log("Required elements for students table not found.");
+      console.log(
+        "fetchStudents: Required elements for students table not found."
+      );
       return; // Only run if on etudiants.html
     }
 
@@ -878,18 +894,24 @@ class AdminDashboard {
     emptyState.style.display = "none";
 
     try {
-      // Add a timestamp to the URL to bust cache
+      console.log(
+        "fetchStudents: Attempting to fetch data from get_students.php"
+      ); // Debugging: Before fetch
       const response = await fetch(
         `./get_students.php?timestamp=${new Date().getTime()}`
       );
+      console.log("fetchStudents: Received response.", response); // Debugging: After fetch
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+      console.log("fetchStudents: Parsed JSON data.", data); // Debugging: After JSON parse
 
       loadingIndicator.style.display = "none";
 
       if (data.success && data.students.length > 0) {
+        console.log("fetchStudents: Students found, rendering table."); // Debugging: Students found
         data.students.forEach((student) => {
           const statusText = student.est_actif == 1 ? "Actif" : "Archivé";
           const statusClass =
@@ -902,13 +924,20 @@ class AdminDashboard {
           const row = `
                         <tr>
                             <td>${student.nom_complet}</td>
-                            <td>${student.id_filiere}</td>
+                            <td>${student.id_filiere || "N/A"}</td>
                             <td>${student.email}</td>
                             <td><span class="badge ${statusClass}">${statusText}</span></td>
+                            <td>${student.moyenne_generale || "N/A"}</td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <button class="btn btn-outline btn-sm edit-student-btn" data-student-id="${student.id_utilisateur}"><i class="fas fa-edit"></i></button>
-                                    <button class="btn ${archiveButtonClass} btn-sm archive-student-btn" data-student-id="${student.id_utilisateur}" data-current-status="${student.est_actif}"><i class="fas fa-archive"></i> ${archiveButtonText}</button>
+                                    <button class="btn btn-outline btn-sm edit-student-btn" data-student-id="${
+                                      student.id_utilisateur
+                                    }"><i class="fas fa-edit"></i></button>
+                                    <button class="btn ${archiveButtonClass} btn-sm archive-student-btn" data-student-id="${
+            student.id_utilisateur
+          }" data-current-status="${
+            student.est_actif
+          }"><i class="fas fa-archive"></i> ${archiveButtonText}</button>
                                 </div>
                             </td>
                         </tr>
@@ -917,10 +946,14 @@ class AdminDashboard {
         });
         this.setupArchiveStudentButtons(); // Attach event listeners after rendering
       } else {
+        console.log(
+          "fetchStudents: No students found or data.success is false.",
+          data
+        ); // Debugging: No students
         emptyState.style.display = "block";
       }
     } catch (error) {
-      console.error("Error fetching students:", error);
+      console.error("fetchStudents: Error fetching students:", error); // Debugging: Catch errors
       loadingIndicator.style.display = "none";
       emptyState.style.display = "block";
       this.showNotification(
@@ -1153,6 +1186,62 @@ class AdminDashboard {
           await this.addModule(formData);
         }
       });
+    }
+  }
+
+  setupAddStudentForm() {
+    console.log("Setting up add student form.");
+    const studentRegistrationForm = document.getElementById(
+      "student-registration-form"
+    );
+    const studentFormModal = document.getElementById("student-form-modal");
+
+    if (studentRegistrationForm) {
+      studentRegistrationForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        console.log("Student registration form submitted.");
+        if (this.validateForm(studentRegistrationForm)) {
+          const formData = new FormData(studentRegistrationForm);
+          await this.addStudent(formData); // Call new method to handle submission
+        }
+      });
+    }
+
+    if (studentFormModal) {
+      // This assumes modal open/close buttons are handled by setupModals
+      // But if there's a specific close button within this modal, handle it here
+      const closeButton = studentFormModal.querySelector(".close-button");
+      if (closeButton) {
+        closeButton.addEventListener("click", () => {
+          this.closeModal(studentFormModal);
+        });
+      }
+    }
+  }
+
+  async addStudent(formData) {
+    try {
+      const response = await fetch("../handle_student_registration.php", {
+        method: "POST",
+        body: formData,
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        this.showNotification(result.message, "success");
+        this.closeModal(document.getElementById("student-form-modal"));
+        this.fetchStudents(); // Refresh student list
+        // Clear form fields after successful submission if needed
+        document.getElementById("student-registration-form").reset();
+      } else {
+        this.showNotification(result.message, "error");
+      }
+    } catch (error) {
+      console.error("Error adding student:", error);
+      this.showNotification(
+        "Une erreur est survenue lors de l'ajout de l'étudiant.",
+        "error"
+      );
     }
   }
 }

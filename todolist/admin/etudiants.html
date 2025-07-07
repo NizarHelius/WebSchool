@@ -188,7 +188,10 @@
                   <option value="inactive">Inactif</option>
                   <option value="graduated">Diplômé</option>
                 </select>
-                <button class="btn btn-primary" data-modal="student-form-modal">
+                <button
+                  class="btn btn-primary"
+                  data-modal-open="student-form-modal"
+                >
                   <i class="fas fa-plus"></i>
                   Nouvel étudiant
                 </button>
@@ -268,7 +271,7 @@
               >
                 <button
                   class="btn btn-success btn-lg"
-                  data-modal="student-form-modal"
+                  data-modal-open="student-form-modal"
                 >
                   <i class="fas fa-user-plus"></i>
                   Inscrire un étudiant
@@ -353,6 +356,10 @@
                   name="lastName"
                   required
                 />
+              </div>
+              <div class="form-group">
+                <label class="form-label">CNE *</label>
+                <input type="text" class="form-control" name="cne" required />
               </div>
               <div class="form-group">
                 <label class="form-label">Date de naissance *</label>

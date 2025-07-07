@@ -22,27 +22,59 @@ try {
     // Retrieve form data
     $firstName = $_POST['firstName'] ?? '';
     $lastName = $_POST['lastName'] ?? '';
-    $firstNameAr = $_POST['firstNameAr'] ?? '';
-    $lastNameAr = $_POST['lastNameAr'] ?? '';
-    $birthDate = $_POST['birthDate'] ?? '';
     $cne = $_POST['cne'] ?? '';
-    $nationality = $_POST['nationality'] ?? '';
-    $language = $_POST['language'] ?? '';
-    $filiere = $_POST['filiere'] ?? '';
-    $niveau = $_POST['niveau'] ?? '';
-    $semestre = $_POST['semestre'] ?? '';
-    $inscriptionDate = $_POST['inscriptionDate'] ?? '';
-    $accommodation = $_POST['accommodation'] ?? '';
-    $email = $_POST['email'] ?? '';
+    $birthDate = $_POST['birthDate'] ?? '';
+    $gender = $_POST['gender'] ?? '';
     $phone = $_POST['phone'] ?? '';
+    $email = $_POST['email'] ?? '';
+
+    // Academic Information
+    $currentClass = $_POST['currentClass'] ?? '';
+    $specialization = $_POST['specialization'] ?? '';
+    $previousSchool = $_POST['previousSchool'] ?? '';
+    $entryYear = $_POST['entryYear'] ?? '';
+
+    // Contact Information (combine into a single address string)
+    $address = $_POST['address'] ?? '';
+    $postalCode = $_POST['postalCode'] ?? '';
+    $city = $_POST['city'] ?? '';
+    $country = $_POST['country'] ?? '';
+
+    $fullAddress = trim(implode(', ', array_filter([$address, $postalCode, $city, $country])));
+
+    // Parent/Guardian Information (not directly used in DB insert for now)
+    $guardianName = $_POST['guardianName'] ?? '';
+    $guardianRelation = $_POST['guardianRelation'] ?? '';
+    $guardianPhone = $_POST['guardianPhone'] ?? '';
+    $guardianEmail = $_POST['guardianEmail'] ?? '';
+
+    // Account Settings
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
+    $confirmPassword = $_POST['confirmPassword'] ?? '';
+    $status = $_POST['status'] ?? 'active';
+    $notes = $_POST['notes'] ?? '';
 
-    // Basic validation (add more robust validation as needed)
-    if (empty($firstName) || empty($lastName) || empty($email) || empty($password) || empty($cne)) {
-        $response['message'] = 'Please fill all required fields.';
+    // Basic validation
+    if (empty($firstName) || empty($lastName) || empty($email) || empty($password) || empty($cne) || empty($currentClass) || empty($specialization)) {
+        $response['message'] = 'Please fill all required fields: First Name, Last Name, Email, Password, CNE, Current Class, and Specialization.';
         echo json_encode($response);
         exit();
+    }
+
+    // Password confirmation check
+    if ($password !== $confirmPassword) {
+        $response['message'] = 'Password and Confirm Password do not match.';
+        echo json_encode($response);
+        exit();
+    }
+
+    // Map gender to database equivalent if needed (e.g., 'male' -> 'M', 'female' -> 'F')
+    $sexe = null;
+    if ($gender === 'male') {
+        $sexe = 'M';
+    } elseif ($gender === 'female') {
+        $sexe = 'F';
     }
 
     // Hash the password
@@ -54,24 +86,29 @@ try {
     $pdo->beginTransaction();
 
     // 1. Insert into 'utilisateur' table
-    $id_role = 3; // Student
-    $stmt = $pdo->prepare("INSERT INTO utilisateur (email, mot_de_passe, id_role, est_actif, email_verified, verification_token) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$email, $hashedPassword, $id_role, 1, 0, $verificationToken]);
+    $id_role = 3; // Student role
+    $est_actif = ($status === 'active') ? 1 : 0;
+
+    $stmt = $pdo->prepare("INSERT INTO utilisateur (email, mot_de_passe, id_role, est_actif, email_verified, verification_token, nom_utilisateur) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$email, $hashedPassword, $id_role, $est_actif, 0, $verificationToken, $username]);
     $id_utilisateur = $pdo->lastInsertId();
 
     // 2. Insert into 'etudiant' table
-    // You need to map filiere name to id_filiere
     $stmt = $pdo->prepare("SELECT id_filiere FROM filiere WHERE nom_filiere = ?");
-    $stmt->execute([$filiere]);
+    $stmt->execute([$specialization]);
     $filiereData = $stmt->fetch();
-    $id_filiere = $filiereData ? $filiereData['id_filiere'] : null; // Handle case where filiere not found
+    $id_filiere = $filiereData ? $filiereData['id_filiere'] : null;
+
+    $stmt = $pdo->prepare("SELECT id_niveau FROM niveau WHERE nom_niveau = ?");
+    $stmt->execute([$currentClass]);
+    $niveauData = $stmt->fetch();
+    $id_niveau = $niveauData ? $niveauData['id_niveau'] : null;
 
     $stmt = $pdo->prepare("
-        INSERT INTO etudiant (code_apogee, id_utilisateur, id_filiere, nom, prenom, date_naissance, telephone, adresse)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO etudiant (code_apogee, id_utilisateur, id_filiere, nom, prenom, date_naissance, telephone, adresse, sexe, id_niveau)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
-    // Note: 'lieu_naissance' and 'sexe' from your DB schema are not in the form, setting default/null
-    // Assuming 'adresse' is not in form either, using a placeholder or null
+
     $stmt->execute([
         $cne,
         $id_utilisateur,
@@ -80,7 +117,9 @@ try {
         $firstName,
         $birthDate,
         $phone,
-        null // Replace null with actual address if available
+        $fullAddress,
+        $sexe,
+        $id_niveau
     ]);
     $id_etudiant = $pdo->lastInsertId();
 

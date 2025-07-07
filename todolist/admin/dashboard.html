@@ -1,272 +1,290 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tableau de bord - Web School Admin</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-logo">WS</div>
-                <h2>Web School</h2>
-            </div>
-
-            <nav class="sidebar-menu">
-                <p class="menu-title">Principal</p>
-                <div class="menu-item active">
-                    <a href="dashboard.html">
-                        <i class="fas fa-home"></i>
-                        Tableau de bord
-                    </a>
-                </div>
-
-                <p class="menu-title">Gestion</p>
-                <div class="menu-item">
-                    <a href="comptes.html">
-                        <i class="fas fa-users-cog"></i>
-                        Comptes utilisateurs
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a href="etudiants.html">
-                        <i class="fas fa-user-graduate"></i>
-                        Étudiants
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a href="attestations.html">
-                        <i class="fas fa-file-certificate"></i>
-                        Attestations
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a href="programmes.html">
-                        <i class="fas fa-book"></i>
-                        Programmes
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a href="planning.html">
-                        <i class="fas fa-calendar-alt"></i>
-                        Planning
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a href="documents.html">
-                        <i class="fas fa-file-check"></i>
-                        Documents
-                    </a>
-                </div>
-
-                <p class="menu-title">Communication</p>
-                <div class="menu-item">
-                    <a href="notifications.html">
-                        <i class="fas fa-bell"></i>
-                        Notifications
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a href="publication.html">
-                        <i class="fas fa-bullhorn"></i>
-                        Publication
-                    </a>
-                </div>
-
-                <p class="menu-title">Système</p>
-                <div class="menu-item">
-                    <a href="personnalisation.html">
-                        <i class="fas fa-paint-brush"></i>
-                        Personnalisation
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a href="donnees.html">
-                        <i class="fas fa-database"></i>
-                        Données
-                    </a>
-                </div>
-            </nav>
-        </aside>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Header -->
-            <header class="header">
-                <div class="welcome">
-                    <div class="user-avatar">A</div>
-                    <div class="user-info">
-                        <h3>Bonjour, Administrateur</h3>
-                        <p>Tableau de bord</p>
-                    </div>
-                </div>
-                <button type="button" class="logout-btn">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Déconnexion
-                </button>
-            </header>
-
-            <!-- Content -->
-            <div class="content">
-                <div class="page-header">
-                    <h1 class="page-title">Tableau de bord</h1>
-                    <p class="page-description">Vue d'ensemble de votre plateforme Web School</p>
-                </div>
-
-                <!-- Statistics Cards -->
-                <div class="stats-grid">
-                    <div class="stat-card fade-in-up">
-                        <div class="stat-icon primary">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-title">Utilisateurs actifs</div>
-                        <div class="stat-value">1,248</div>
-                        <div class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            12% ce mois
-                        </div>
-                    </div>
-
-                    <div class="stat-card fade-in-up">
-                        <div class="stat-icon success">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <div class="stat-title">Étudiants inscrits</div>
-                        <div class="stat-value">856</div>
-                        <div class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            8% ce mois
-                        </div>
-                    </div>
-
-                    <div class="stat-card fade-in-up">
-                        <div class="stat-icon warning">
-                            <i class="fas fa-file-certificate"></i>
-                        </div>
-                        <div class="stat-title">Attestations générées</div>
-                        <div class="stat-value">324</div>
-                        <div class="stat-change negative">
-                            <i class="fas fa-arrow-down"></i>
-                            3% ce mois
-                        </div>
-                    </div>
-
-                    <div class="stat-card fade-in-up">
-                        <div class="stat-icon danger">
-                            <i class="fas fa-bell"></i>
-                        </div>
-                        <div class="stat-title">Notifications</div>
-                        <div class="stat-value">42</div>
-                        <div class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            24% ce mois
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Actions -->
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h2 class="card-title">Actions rapides</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                            <a href="comptes.html" class="btn btn-primary btn-lg">
-                                <i class="fas fa-user-plus"></i>
-                                Ajouter un compte
-                            </a>
-                            <a href="etudiants.html" class="btn btn-success btn-lg">
-                                <i class="fas fa-user-edit"></i>
-                                Ajouter un étudiant
-                            </a>
-                            <a href="attestations.html" class="btn btn-warning btn-lg">
-                                <i class="fas fa-file-export"></i>
-                                Générer attestation
-                            </a>
-                            <a href="publication.html" class="btn btn-outline btn-lg">
-                                <i class="fas fa-newspaper"></i>
-                                Nouvelle publication
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Activity -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Activité récente</h2>
-                        <a href="#" class="btn btn-outline btn-sm">Voir tout</a>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Action</th>
-                                        <th>Utilisateur</th>
-                                        <th>Date</th>
-                                        <th>Statut</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-center gap-2">
-                                                <i class="fas fa-user-plus text-success"></i>
-                                                Nouveau compte créé
-                                            </div>
-                                        </td>
-                                        <td>Marie Dupont</td>
-                                        <td>Il y a 2 heures</td>
-                                        <td><span class="badge badge-success">Terminé</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-center gap-2">
-                                                <i class="fas fa-file-certificate text-warning"></i>
-                                                Attestation générée
-                                            </div>
-                                        </td>
-                                        <td>Jean Martin</td>
-                                        <td>Il y a 4 heures</td>
-                                        <td><span class="badge badge-success">Terminé</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-center gap-2">
-                                                <i class="fas fa-edit text-info"></i>
-                                                Profil mis à jour
-                                            </div>
-                                        </td>
-                                        <td>Sophie Bernard</td>
-                                        <td>Il y a 6 heures</td>
-                                        <td><span class="badge badge-success">Terminé</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-center gap-2">
-                                                <i class="fas fa-exclamation-triangle text-warning"></i>
-                                                Tentative de connexion échouée
-                                            </div>
-                                        </td>
-                                        <td>Pierre Durand</td>
-                                        <td>Il y a 8 heures</td>
-                                        <td><span class="badge badge-warning">En attente</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">WS</div>
+          <h2>Web School</h2>
         </div>
+
+        <nav class="sidebar-menu">
+          <p class="menu-title">Principal</p>
+          <div class="menu-item active">
+            <a href="dashboard.html">
+              <i class="fas fa-home"></i>
+              Tableau de bord
+            </a>
+          </div>
+
+          <p class="menu-title">Gestion</p>
+          <div class="menu-item">
+            <a href="comptes.html">
+              <i class="fas fa-users-cog"></i>
+              Comptes utilisateurs
+            </a>
+          </div>
+          <div class="menu-item">
+            <a href="etudiants.html">
+              <i class="fas fa-user-graduate"></i>
+              Étudiants
+            </a>
+          </div>
+          <div class="menu-item">
+            <a href="attestations.html">
+              <i class="fas fa-file-certificate"></i>
+              Attestations
+            </a>
+          </div>
+          <div class="menu-item">
+            <a href="programmes.html">
+              <i class="fas fa-book"></i>
+              Programmes
+            </a>
+          </div>
+          <div class="menu-item">
+            <a href="planning.html">
+              <i class="fas fa-calendar-alt"></i>
+              Planning
+            </a>
+          </div>
+          <div class="menu-item">
+            <a href="documents.html">
+              <i class="fas fa-file-check"></i>
+              Documents
+            </a>
+          </div>
+
+          <p class="menu-title">Communication</p>
+          <div class="menu-item">
+            <a href="notifications.html">
+              <i class="fas fa-bell"></i>
+              Notifications
+            </a>
+          </div>
+          <div class="menu-item">
+            <a href="publication.html">
+              <i class="fas fa-bullhorn"></i>
+              Publication
+            </a>
+          </div>
+
+          <p class="menu-title">Système</p>
+          <div class="menu-item">
+            <a href="personnalisation.html">
+              <i class="fas fa-paint-brush"></i>
+              Personnalisation
+            </a>
+          </div>
+          <div class="menu-item">
+            <a href="donnees.html">
+              <i class="fas fa-database"></i>
+              Données
+            </a>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+          <div class="welcome">
+            <div class="user-avatar">A</div>
+            <div class="user-info">
+              <h3>Bonjour, Administrateur</h3>
+              <p>Tableau de bord</p>
+            </div>
+          </div>
+          <button type="button" class="logout-btn" id="logoutAdminButton">
+            <i class="fas fa-sign-out-alt"></i>
+            Déconnexion
+          </button>
+        </header>
+
+        <!-- Content -->
+        <div class="content">
+          <div class="page-header">
+            <h1 class="page-title">Tableau de bord</h1>
+            <p class="page-description">
+              Vue d'ensemble de votre plateforme Web School
+            </p>
+          </div>
+
+          <!-- Statistics Cards -->
+          <div class="stats-grid">
+            <div class="stat-card fade-in-up">
+              <div class="stat-icon primary">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="stat-title">Utilisateurs actifs</div>
+              <div class="stat-value">1,248</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                12% ce mois
+              </div>
+            </div>
+
+            <div class="stat-card fade-in-up">
+              <div class="stat-icon success">
+                <i class="fas fa-user-graduate"></i>
+              </div>
+              <div class="stat-title">Étudiants inscrits</div>
+              <div class="stat-value">856</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                8% ce mois
+              </div>
+            </div>
+
+            <div class="stat-card fade-in-up">
+              <div class="stat-icon warning">
+                <i class="fas fa-file-certificate"></i>
+              </div>
+              <div class="stat-title">Attestations générées</div>
+              <div class="stat-value">324</div>
+              <div class="stat-change negative">
+                <i class="fas fa-arrow-down"></i>
+                3% ce mois
+              </div>
+            </div>
+
+            <div class="stat-card fade-in-up">
+              <div class="stat-icon danger">
+                <i class="fas fa-bell"></i>
+              </div>
+              <div class="stat-title">Notifications</div>
+              <div class="stat-value">42</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                24% ce mois
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="card mb-6">
+            <div class="card-header">
+              <h2 class="card-title">Actions rapides</h2>
+            </div>
+            <div class="card-body">
+              <div
+                class="d-grid"
+                style="
+                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                  gap: 1rem;
+                "
+              >
+                <a href="comptes.html" class="btn btn-primary btn-lg">
+                  <i class="fas fa-user-plus"></i>
+                  Ajouter un compte
+                </a>
+                <a href="etudiants.html" class="btn btn-success btn-lg">
+                  <i class="fas fa-user-edit"></i>
+                  Ajouter un étudiant
+                </a>
+                <a href="attestations.html" class="btn btn-warning btn-lg">
+                  <i class="fas fa-file-export"></i>
+                  Générer attestation
+                </a>
+                <a href="publication.html" class="btn btn-outline btn-lg">
+                  <i class="fas fa-newspaper"></i>
+                  Nouvelle publication
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Activité récente</h2>
+              <a href="#" class="btn btn-outline btn-sm">Voir tout</a>
+            </div>
+            <div class="card-body">
+              <div class="table-container">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Action</th>
+                      <th>Utilisateur</th>
+                      <th>Date</th>
+                      <th>Statut</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-center gap-2">
+                          <i class="fas fa-user-plus text-success"></i>
+                          Nouveau compte créé
+                        </div>
+                      </td>
+                      <td>Marie Dupont</td>
+                      <td>Il y a 2 heures</td>
+                      <td><span class="badge badge-success">Terminé</span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-center gap-2">
+                          <i class="fas fa-file-certificate text-warning"></i>
+                          Attestation générée
+                        </div>
+                      </td>
+                      <td>Jean Martin</td>
+                      <td>Il y a 4 heures</td>
+                      <td><span class="badge badge-success">Terminé</span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-center gap-2">
+                          <i class="fas fa-edit text-info"></i>
+                          Profil mis à jour
+                        </div>
+                      </td>
+                      <td>Sophie Bernard</td>
+                      <td>Il y a 6 heures</td>
+                      <td><span class="badge badge-success">Terminé</span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-center gap-2">
+                          <i
+                            class="fas fa-exclamation-triangle text-warning"
+                          ></i>
+                          Tentative de connexion échouée
+                        </div>
+                      </td>
+                      <td>Pierre Durand</td>
+                      <td>Il y a 8 heures</td>
+                      <td>
+                        <span class="badge badge-warning">En attente</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
